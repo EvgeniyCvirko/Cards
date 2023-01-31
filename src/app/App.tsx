@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.css';
-import {SingIn} from '../features/SingIn/SingIn';
+import {Headers} from '../components/Headers/Headers';
+import { Pages } from '../routing/Pages';
 
-function App() {
+export const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <SingIn/>
-      </header>
-    </div>
+    <>
+      <Headers/>
+      <Pages/>
+    </>
   );
 }
-
-export default App;
