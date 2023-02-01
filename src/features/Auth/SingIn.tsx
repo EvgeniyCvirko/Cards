@@ -10,6 +10,7 @@ export const SingIn = () =>{
   const dispatch = useDispatch()
   const onFinish = (values:loginParamType) => {
     console.log('Received values of form: ', values);
+    // @ts-ignore
     dispatch(setLogin(values))
   };
   return (
@@ -21,6 +22,8 @@ export const SingIn = () =>{
       }}
       onFinish={onFinish}
     >
+      <div>Email: incubatorfriday@gmail.com </div>
+      <div>Password: 123FridayIncubator123 </div>
       <Form.Item
         name="email"
         rules={[{required: true,message: 'Please input your Email!',}]}>
