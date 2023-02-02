@@ -4,6 +4,11 @@ export type loginParamType={
   rememberMe: boolean
 }
 
+export type registerDataType={
+  email: string,
+  password: string,
+}
+
 export type UserType={
   _id: string;
   email: string;

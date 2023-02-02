@@ -1,20 +1,24 @@
-import {SingIn} from '../features/Auth/SingIn';
 import {Card} from '../features/Card/Card';
-import {Route, Routes,Navigate } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import React from 'react';
+import {Register} from '../features/Register/Register';
+import {Login} from '../features/Auth/Login';
 
 export const PATH = {
   PROFILE: '/profile',
   LOGIN: '/login',
+  REGISTER: '/sing-up',
   CARD: '/card',
 }
 
 export const Pages = () => {
+
   return <>
     <Routes>
-      <Route path={'/'} element={<Navigate to={PATH.PROFILE} />} />
-      <Route path={PATH.LOGIN} element={<SingIn />} />
-      <Route path={PATH.CARD} element={<Card />} />
+      {/*<Route path={'/'} element={<Navigate to={PATH.CARD} />} />*/}
+      <Route path={PATH.LOGIN} element={<Login/>}/>
+      <Route path={PATH.REGISTER} element={<Register/>}/>
+      <Route path={PATH.CARD} element={<Card/>}/>
     </Routes>
   </>
 }
