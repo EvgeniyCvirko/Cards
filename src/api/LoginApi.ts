@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, {AxiosResponse} from 'axios'
 import {loginParamType, UserType} from './types';
 
 export const instance = axios.create({
@@ -7,7 +7,13 @@ export const instance = axios.create({
 })
 
 export const LoginApi = {
-  login(payload: loginParamType){
+  login(payload: loginParamType) {
     return instance.post<UserType>('/auth/login', payload)
+  },
+  logout() {
+    return instance.delete<{ info: string, error: string }>('/auth/me')
+  },
+  me() {
+    return instance.post<UserType>('/auth/me')
   }
 }
