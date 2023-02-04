@@ -17,12 +17,13 @@ export const Pages = () => {
 
   return <>
     <Routes>
-      {/*<Route path={'/'} element={<Navigate to={PATH.CARD} />} />*/}
+      <Route path={'/'} element={<Navigate to={PATH.PROFILE}/>}/>
       <Route path={PATH.LOGIN} element={<Login/>}/>
       <Route path={PATH.REGISTER} element={<Register/>}/>
       <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
       <Route path={PATH.CARD} element={<Card/>}/>
+      <Route path={PATH.PROFILE} element={<Profile/>}/>
     </Routes>
   </>
 }
