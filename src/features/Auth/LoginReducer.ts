@@ -14,6 +14,17 @@ export const setLogin = createAsyncThunk<{ isLogin: boolean }, { loginData: Logi
   }
 )
 
+export const setLogout = createAsyncThunk<{ isLogin: boolean }, undefined, { rejectValue: { error: string | undefined } }>(
+  'login/setLogout', async (param, ThunkApi) => {
+    const res = await authApi.logout()
+    try {
+      return {isLogin: false}
+    } catch (e) {
+      return ThunkApi.rejectWithValue({error: res.data.error})
+    }
+  }
+)
+
 //state
 export const slice = createSlice({
   name: 'login',
@@ -29,6 +40,9 @@ export const slice = createSlice({
     builder.addCase(setLogin.fulfilled, (state, action) => {
       state.isLogin = action.payload.isLogin
 
+    });
+    builder.addCase(setLogout.fulfilled, (state, action) => {
+      state.isLogin = action.payload.isLogin
     })
   }
 })

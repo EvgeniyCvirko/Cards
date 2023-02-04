@@ -15,9 +15,9 @@ export const Login = () => {
   const onFinish = (values: LoginParamType) => {
     dispatch(setLogin({loginData: values}))
   };
-  /*if(isLogin){
+  if(isLogin){
     return  <Navigate to='/'/>
-  }*/
+  }
   return (
     <Form
       name="normal_login"
