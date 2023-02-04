@@ -17,3 +17,18 @@ export const LoginApi = {
     return instance.post<UserType>('/auth/me')
   }
 }
+
+export const registerApi = {
+  register(payload: RegisterDataType) {
+    return instance.post('/auth/register', payload)
+  },
+}
+
+export const repairPassword = {
+  forgotPassword(payload: ForgotDataType) {
+    return instance.post('/auth/forgot', payload)
+  },
+  setNewPassword(paylod: NewPasswordDataType) {
+    return instance.post('/auth/set-new-password', paylod)
+  }
+}

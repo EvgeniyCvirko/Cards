@@ -4,7 +4,7 @@ export type loginParamType={
   rememberMe: boolean
 }
 
-export type registerDataType={
+export type RegisterDataType = {
   email: string,
   password: string,
 }
@@ -27,4 +27,13 @@ export type ErrorDataResponseType = {
   in: string
   isEmailValid: boolean
   isPassValid: boolean
+}
+export type ForgotDataType = {
+  email: string,
+  from: string,
+  message: string
+}
+export type NewPasswordDataType = {
+  password: string,
+  resetPasswordToken: string,
 }

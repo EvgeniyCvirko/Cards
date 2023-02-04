@@ -1,0 +1,51 @@
+.input {
+    position: relative;
+}
+
+.button {
+    cursor: pointer;
+
+    display: inline-block;
+
+    width: 363px;
+    height: 36px;
+    margin-top: 20px;
+
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+
+    background-color: #366EFF;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    transition: all 1s ease-out;
+}
+
+.button:hover {
+    background-color: #2e52e3
+}
+
+.button:active {
+    opacity: 0.6;
+    box-shadow: #2e52e3;
+}
+
+.text {
+    font-size: 14px;
+    color: #000000;
+    text-align: left;
+
+    opacity: 0.5;
+}
+
+.formCheckEmail {
+    width: 363px;
+}
+
+.formCheckEmail span {
+    color: chocolate;
+}
