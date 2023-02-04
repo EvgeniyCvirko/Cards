@@ -3,11 +3,11 @@ import './App.css';
 import {Headers} from '../components/Headers/Headers';
 import {Pages} from '../routing/Pages';
 import {setIsInitialized} from './AppReducer';
-import {useAppDispatch, useAppSelector} from '../utils/hooks';
+import {useAppDispatch} from '../utils/hooks';
 
 export const App = () => {
   const dispatch = useAppDispatch()
-  const isLogin = useAppSelector(state => state.login.isLogin)
+
 
   useEffect(() => {
       dispatch(setIsInitialized())

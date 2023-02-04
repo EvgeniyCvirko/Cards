@@ -1,12 +1,12 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {LoginApi} from '../api/LoginApi';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {StatusType} from '../types/commonTypes';
 import {setIsLogin} from '../features/Auth/LoginReducer';
+import {authApi} from '../api/AuthApi';
 
 
 export const setIsInitialized = createAsyncThunk<{ isInitialized: boolean }, undefined, { rejectValue: { error: string | undefined } }>
 ('app/setInitial', async (param, ThunkApi) => {
-  const res = await LoginApi.me()
+  const res = await authApi.me()
   try {
     ThunkApi.dispatch(setIsLogin({isLogin: true}))
     return {isInitialized: true}
@@ -22,7 +22,11 @@ export const slice = createSlice({
     isInitialized: false,
     error: null
   } as InitialStateType,
-  reducers: {},
+  reducers: {
+    setAppStatus(state, action: PayloadAction<{ status: StatusType }>) {
+      state.status = action.payload.status
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(setIsInitialized.fulfilled, (state, action) => {
       state.isInitialized = action.payload.isInitialized
@@ -31,7 +35,9 @@ export const slice = createSlice({
 })
 
 export const appReducer = slice.reducer
-
+//action
+export const {setAppStatus} = slice.actions
+//types
 export type InitialStateType = {
   status: StatusType
   error: string | null

@@ -1,4 +1,4 @@
-export type loginParamType={
+export type LoginParamType = {
   email: string,
   password: string,
   rememberMe: boolean
@@ -9,7 +9,7 @@ export type RegisterDataType = {
   password: string,
 }
 
-export type UserType={
+export type UserType = {
   _id: string;
   email: string;
   name: string;

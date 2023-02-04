@@ -2,15 +2,15 @@ import React from 'react'
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Form, Input} from 'antd';
 import './Register.css'
-import {registerDataType} from '../../api/types';
+import {RegisterDataType} from '../../api/types';
 import {useAppDispatch} from '../../utils/hooks';
 import {NavLink} from 'react-router-dom';
 import {setRegister} from './RegisterThunk';
+import {PATH} from '../../routing/Pages';
 
 export const Register = () => {
   const dispatch = useAppDispatch()
-
-  const onFinish = (values: registerDataType) => {
+  const onFinish = (values: RegisterDataType) => {
     dispatch(setRegister(values))
   };
 
@@ -54,7 +54,7 @@ export const Register = () => {
           Log in
         </Button>
         <p> Already have an account?</p>
-        <NavLink className="login-form-forgot" to="/login">register now!</NavLink>
+        <NavLink className="login-form-forgot" to={PATH.LOGIN}>Sing In</NavLink>
       </Form.Item>
     </Form>
   );

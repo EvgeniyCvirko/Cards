@@ -3,16 +3,16 @@ import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Checkbox, Form, Input} from 'antd';
 import './Login.css'
 import {setLogin} from './LoginReducer';
-import {loginParamType} from '../../api/types';
+import {LoginParamType} from '../../api/types';
 import {useAppDispatch, useAppSelector} from '../../utils/hooks';
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
+import {PATH} from '../../routing/Pages';
 
 export const Login = () => {
   const dispatch = useAppDispatch()
   const isLogin = useAppSelector(state => state.login.isLogin)
 
-
-  const onFinish = (values: loginParamType) => {
+  const onFinish = (values: LoginParamType) => {
     dispatch(setLogin({loginData: values}))
   };
   /*if(isLogin){
@@ -44,17 +44,14 @@ export const Login = () => {
         <Form.Item name="remember" valuePropName="checked" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
+        <NavLink to={PATH.FORGOT_PASSWORD}>Forgot password</NavLink>
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
         </Button>
-        Or <NavLink to="/sing-up">register now!</NavLink>
+        Or <NavLink to={PATH.REGISTER}>register now!</NavLink>
       </Form.Item>
     </Form>
   );

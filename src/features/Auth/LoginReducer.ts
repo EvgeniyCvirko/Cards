@@ -1,11 +1,11 @@
 //thunk
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {loginParamType} from '../../api/types';
-import {LoginApi} from '../../api/LoginApi';
+import {LoginParamType} from '../../api/types';
+import {authApi} from '../../api/AuthApi';
 
-export const setLogin = createAsyncThunk<{ isLogin: boolean }, { loginData: loginParamType }, { rejectValue: { error: string | undefined } }>(
+export const setLogin = createAsyncThunk<{ isLogin: boolean }, { loginData: LoginParamType }, { rejectValue: { error: string | undefined } }>(
   'login/setLogin', async (param, ThunkApi) => {
-    const res = await LoginApi.login(param.loginData)
+    const res = await authApi.login(param.loginData)
     try {
       return {isLogin: true}
     } catch (error: any) {

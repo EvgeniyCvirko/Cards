@@ -1,8 +1,11 @@
 import {Card} from '../features/Card/Card';
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import React from 'react';
 import {Register} from '../features/Register/Register';
 import {Login} from '../features/Auth/Login';
+import {Profile} from '../features/Profile/Profile';
+import {ForgotPassword} from '../features/Auth/ForgotPassword/ForgotPassword';
+import {CheckEmail} from '../features/Auth/CheckEmail/CheckEmail';
 
 export const PATH = {
   PROFILE: '/profile',
