@@ -6,24 +6,19 @@ import {Navigate, NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {PATH} from '../../../routing/Pages';
 import {sendEmail} from './ForgotPasswordReducer';
-import {CheckEmail} from '../CheckEmail/CheckEmail';
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()
   const status = useAppSelector(state => state.app.status)
-  const isSend = useAppSelector(state => state.forgotPassword.isSend)
-
-  const onFinish = (values: any) => {
-    console.log(values.email)
+  const onHandler = (values: any) => {
     dispatch(sendEmail(values.email))
   };
   if (status === 'succeeded') return <Navigate to={PATH.CHECK_EMAIL}/>;
   return (<>
-    {!isSend ?
-      (<Form
-        name="normal_login"
+      <Form
+        name="forgotPassword"
         className="login-form"
-        onFinish={onFinish}
+        onFinish={onHandler}
       >
         <div>Forgot your password?</div>
         <Form.Item
@@ -39,9 +34,6 @@ export const ForgotPassword = () => {
           <div>Did you remember your password?</div>
           <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
         </Form.Item>
-      </Form>)
-      :
-      (<CheckEmail/>)
-    }
+      </Form>
   </>);
 }

@@ -12,7 +12,6 @@ export const sendEmail = createAsyncThunk<{ email: string }, string, { rejectVal
       from: 'test-front-admin <ai73a@yandex.by>',
       message: letter
     }
-    console.log(forgotForm)
     ThunkApi.dispatch(setAppStatus({status: 'loading'}))
     const res = await repairPassword.forgotPassword(forgotForm)
     try {
@@ -24,8 +23,8 @@ export const sendEmail = createAsyncThunk<{ email: string }, string, { rejectVal
   }
 )
 
-export const sendNewPassword = createAsyncThunk< undefined, { password: string, resetPasswordToken: string }, { rejectValue: { error: string | undefined } }>(
-  'login/setLogout', async (param:NewPasswordDataType, ThunkApi) => {
+export const sendNewPassword = createAsyncThunk<undefined, { password: string, resetPasswordToken: string }, { rejectValue: { error: string | undefined } }>(
+  'login/setLogout', async (param: NewPasswordDataType, ThunkApi) => {
     ThunkApi.dispatch(setAppStatus({status: 'loading'}))
     const res = await repairPassword.setNewPassword(param)
     try {
@@ -41,7 +40,6 @@ export const slice = createSlice({
   name: 'forgotPassword ',
   initialState: {
     email: '',
-    isSend: false
   } as InitialStateType,
   reducers: {},
   extraReducers: (builder) => {
@@ -56,5 +54,4 @@ export const forgotPasswordReducer = slice.reducer
 //type
 type InitialStateType = {
   email: string,
-  isSend: boolean
 }
