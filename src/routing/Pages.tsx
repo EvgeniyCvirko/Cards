@@ -6,6 +6,7 @@ import {Login} from '../features/Auth/Login';
 import {Profile} from '../features/Profile/Profile';
 import {ForgotPassword} from '../features/Auth/ForgotPassword/ForgotPassword';
 import {CheckEmail} from '../features/Auth/CheckEmail/CheckEmail';
+import {CreateNewPassword} from '../features/Auth/CreateNewPassword/CreateNewPassword';
 
 export const PATH = {
   PROFILE: '/profile',
@@ -13,6 +14,7 @@ export const PATH = {
   REGISTER: '/sing-up',
   CARD: '/card',
   FORGOT_PASSWORD: '/forgotPassword',
+  CREATE_NEW_PASSWORD: '/createNewPassword/:token',
   CHECK_EMAIL: '/checkEmail',
 }
 
@@ -24,6 +26,7 @@ export const Pages = () => {
       <Route path={PATH.LOGIN} element={<Login/>}/>
       <Route path={PATH.REGISTER} element={<Register/>}/>
       <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
+      <Route path={PATH.CREATE_NEW_PASSWORD} element={<CreateNewPassword/>}/>
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
       <Route path={PATH.CARD} element={<Card/>}/>
       <Route path={PATH.PROFILE} element={<Profile/>}/>

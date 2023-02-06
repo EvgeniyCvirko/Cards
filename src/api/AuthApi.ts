@@ -28,7 +28,7 @@ export const repairPassword = {
   forgotPassword(payload: ForgotDataType) {
     return instance.post('/auth/forgot', payload)
   },
-  setNewPassword(paylod: NewPasswordDataType) {
-    return instance.post('/auth/set-new-password', paylod)
+  setNewPassword(payload: NewPasswordDataType) {
+    return instance.post('/auth/set-new-password', payload)
   }
 }

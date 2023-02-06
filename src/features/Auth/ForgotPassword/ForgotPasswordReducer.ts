@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {repairPassword} from '../../../api/AuthApi';
 import {letter} from './letter';
 import {setAppStatus} from '../../../app/AppReducer';
+import {NewPasswordDataType} from '../../../api/types';
 
 export const sendEmail = createAsyncThunk<{ email: string }, string, { rejectValue: { error: string | undefined } }>(
   'login/setLogout', async (email: string, ThunkApi) => {
@@ -23,6 +24,18 @@ export const sendEmail = createAsyncThunk<{ email: string }, string, { rejectVal
   }
 )
 
+export const sendNewPassword = createAsyncThunk< undefined, { password: string, resetPasswordToken: string }, { rejectValue: { error: string | undefined } }>(
+  'login/setLogout', async (param:NewPasswordDataType, ThunkApi) => {
+    ThunkApi.dispatch(setAppStatus({status: 'loading'}))
+    const res = await repairPassword.setNewPassword(param)
+    try {
+      ThunkApi.dispatch(setAppStatus({status: 'succeeded'}))
+    } catch (e) {
+      return ThunkApi.rejectWithValue({error: res.data.error})
+    }
+  }
+)
+
 //state
 export const slice = createSlice({
   name: 'forgotPassword ',
@@ -33,7 +46,7 @@ export const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(sendEmail.fulfilled, (state, action) => {
-      state = {email: action.payload.email, isSend: true}
+      state.email = action.payload.email
     })
   }
 })
