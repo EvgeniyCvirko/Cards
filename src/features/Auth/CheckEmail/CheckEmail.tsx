@@ -13,17 +13,15 @@ export const CheckEmail = () => {
   };
   console.log('chek')
   return (
-    <div className="formCheckEmail">
+    <div className={s.formCheckEmail}>
       <h1>Check Email</h1>
-      <div className="input">
+      <div >
         <img src={img} alt={'image'}/>
       </div>
-      <div className="text">
-        We’ve sent an Email with instructions to <span>{email}</span>
+      <div className={s.text}>
+        We’ve sent an email with instructions to <span>{email}</span>
       </div>
-      <button className="button" onClick={backLoginHandler}>
-        Back to login
-      </button>
+      <Button name='Back to login' callback={backLoginHandler}/>
     </div>
   );
 }

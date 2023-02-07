@@ -1,15 +1,10 @@
-.input {
-    position: relative;
-}
-
 .button {
     cursor: pointer;
 
     display: inline-block;
 
-    width: 363px;
+    width: 50%;
     height: 36px;
-    margin-top: 20px;
 
     font-size: 15px;
     color: #fff;
@@ -30,22 +25,9 @@
 }
 
 .button:active {
-    opacity: 0.6;
+    opacity: 0.4;
     box-shadow: #2e52e3;
 }
 
-.text {
-    font-size: 14px;
-    color: #000000;
-    text-align: left;
 
-    opacity: 0.5;
-}
 
-.formCheckEmail {
-    width: 363px;
-}
-
-.formCheckEmail span {
-    color: chocolate;
-}
