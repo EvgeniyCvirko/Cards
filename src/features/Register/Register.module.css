@@ -1,0 +1,20 @@
+.registerForm {
+    max-width: 300px;
+    margin: 150px auto;
+}
+
+.button {
+    text-align: center;
+}
+
+.button button {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.link {
+    text-align: center;
+}
+.link p {
+    margin: 0 0 10px 0;
+}

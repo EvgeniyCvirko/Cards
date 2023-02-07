@@ -1,11 +1,11 @@
 import React from 'react'
 import {UserOutlined} from '@ant-design/icons';
 import {Button, Form, Input} from 'antd';
-import './ForgotPassword.css'
 import {Navigate, NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {PATH} from '../../../routing/Pages';
 import {sendEmail} from './ForgotPasswordReducer';
+import s from './ForgotPassword.module.css';
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()
@@ -17,22 +17,25 @@ export const ForgotPassword = () => {
   return (<>
       <Form
         name="forgotPassword"
-        className="login-form"
+        className={s.forgotPassword}
         onFinish={onHandler}
       >
-        <div>Forgot your password?</div>
         <Form.Item
           name="email"
           rules={[{required: true, message: 'Please input your Email!',}]}>
-          <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Email" type="email"/>
+          <Input prefix={<UserOutlined />} placeholder="Email" type="email"/>
         </Form.Item>
-        <div>Enter your email address and we will send you further instructions</div>
+        <div className={s.text}>Enter your email address and we will send you further instructions</div>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            Send Instructions
-          </Button>
-          <div>Did you remember your password?</div>
-          <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
+          <div className={s.button}>
+            <Button type="primary" htmlType="submit">
+              Send Instructions
+            </Button>
+          </div>
+          <div className={s.link}>
+            <div className={s.text}>Did you remember your password?</div>
+            <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
+          </div>
         </Form.Item>
       </Form>
   </>);

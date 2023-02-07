@@ -1,7 +1,7 @@
 import React from 'react'
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Form, Input} from 'antd';
-import './Register.css'
+import s from './Register.module.css'
 import {RegisterDataType} from '../../api/types';
 import {useAppDispatch} from '../../utils/hooks';
 import {NavLink} from 'react-router-dom';
@@ -17,7 +17,7 @@ export const Register = () => {
   return (
     <Form
       name="normal_login"
-      className="login-form"
+      className={s.registerForm}
       initialValues={{
         remember: false,
       }}
@@ -26,13 +26,12 @@ export const Register = () => {
       <Form.Item
         name="email"
         rules={[{required: true, message: 'Please input your Email!',}]}>
-        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Email" type="email"/>
+        <Input prefix={<UserOutlined />} placeholder="Email" type="email"/>
       </Form.Item>
       <Form.Item
         name="password"
         rules={[{required: true, message: 'Please input your Username!',}]}>
-        <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>} type="password"
-                        placeholder="Password"/>
+        <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password"/>
       </Form.Item>
       <Form.Item
         name="confirm"
@@ -46,15 +45,18 @@ export const Register = () => {
             },
           }),
         ]}>
-        <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>} type="password"
-                        placeholder="Confirm password"/>
+        <Input.Password prefix={<LockOutlined/>} type="password" placeholder="Confirm password"/>
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-        <p> Already have an account?</p>
-        <NavLink className="login-form-forgot" to={PATH.LOGIN}>Sing In</NavLink>
+        <div className={s.button}>
+          <Button type="primary" htmlType="submit">
+            Log in
+          </Button>
+        </div>
+        <div className={s.link}>
+          <p>Already have an account?</p>
+          <NavLink to={PATH.LOGIN}>Sing In!</NavLink>
+        </div>
       </Form.Item>
     </Form>
   );
