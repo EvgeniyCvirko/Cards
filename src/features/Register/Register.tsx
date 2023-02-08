@@ -1,12 +1,15 @@
 import React from 'react'
-import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Form, Input} from 'antd';
+import {LockOutlined} from '@ant-design/icons';
+import {Form, Input} from 'antd';
 import s from './Register.module.css'
 import {RegisterDataType} from '../../api/types';
 import {useAppDispatch} from '../../utils/hooks';
 import {NavLink} from 'react-router-dom';
 import {setRegister} from './RegisterThunk';
 import {PATH} from '../../routing/Pages';
+import {ButtonForm} from '../../components/FormItem/ButtonForm';
+import {InputForm} from '../../components/FormItem/InputForm';
+import {PasswordForm} from '../../components/FormItem/PasswordForm';
 
 export const Register = () => {
   const dispatch = useAppDispatch()
@@ -23,16 +26,8 @@ export const Register = () => {
       }}
       onFinish={onFinish}
     >
-      <Form.Item
-        name="email"
-        rules={[{required: true, message: 'Please input your Email!',}]}>
-        <Input prefix={<UserOutlined />} placeholder="Email" type="email"/>
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[{required: true, message: 'Please input your Username!',}]}>
-        <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password"/>
-      </Form.Item>
+      <InputForm name="email"/>
+      <PasswordForm name="password"/>
       <Form.Item
         name="confirm"
         rules={[{required: true, message: 'Please input your Username!',},
@@ -47,17 +42,11 @@ export const Register = () => {
         ]}>
         <Input.Password prefix={<LockOutlined/>} type="password" placeholder="Confirm password"/>
       </Form.Item>
-      <Form.Item>
-        <div className={s.button}>
-          <Button type="primary" htmlType="submit">
-            Log in
-          </Button>
-        </div>
-        <div className={s.link}>
-          <p>Already have an account?</p>
-          <NavLink to={PATH.LOGIN}>Sing In!</NavLink>
-        </div>
-      </Form.Item>
+      <ButtonForm name="Log in"/>
+      <div className={s.link}>
+        <p>Already have an account?</p>
+        <NavLink to={PATH.LOGIN}>Sing In!</NavLink>
+      </div>
     </Form>
   );
 }
