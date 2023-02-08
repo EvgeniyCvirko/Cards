@@ -39,3 +39,10 @@
 .block span {
     border-bottom: 1px dashed #000000
 }
+
+.button {
+display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+}

@@ -1,4 +1,3 @@
-//thunk
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {LoginParamType} from '../../api/types';
 import {authApi} from '../../api/AuthApi';
@@ -39,7 +38,6 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(setLogin.fulfilled, (state, action) => {
       state.isLogin = action.payload.isLogin
-
     });
     builder.addCase(setLogout.fulfilled, (state, action) => {
       state.isLogin = action.payload.isLogin

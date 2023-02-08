@@ -6,7 +6,7 @@ import {setAppStatus} from '../../../app/AppReducer';
 import {NewPasswordDataType} from '../../../api/types';
 
 export const sendEmail = createAsyncThunk<{ email: string }, string, { rejectValue: { error: string | undefined } }>(
-  'login/setLogout', async (email: string, ThunkApi) => {
+  'forgotPassword/sendEmail', async (email: string, ThunkApi) => {
     const forgotForm = {
       email,
       from: 'test-front-admin <ai73a@yandex.by>',
@@ -24,7 +24,7 @@ export const sendEmail = createAsyncThunk<{ email: string }, string, { rejectVal
 )
 
 export const sendNewPassword = createAsyncThunk<undefined, { password: string, resetPasswordToken: string }, { rejectValue: { error: string | undefined } }>(
-  'login/setLogout', async (param: NewPasswordDataType, ThunkApi) => {
+  'forgotPassword/sendNewPassword', async (param: NewPasswordDataType, ThunkApi) => {
     ThunkApi.dispatch(setAppStatus({status: 'loading'}))
     const res = await repairPassword.setNewPassword(param)
     try {
