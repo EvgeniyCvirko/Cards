@@ -7,6 +7,8 @@ import {Profile} from '../features/Profile/Profile';
 import {ForgotPassword} from '../features/Auth/ForgotPassword/ForgotPassword';
 import {CheckEmail} from '../features/Auth/CheckEmail/CheckEmail';
 import {CreateNewPassword} from '../features/Auth/CreateNewPassword/CreateNewPassword';
+import {Error404} from '../components/Error404/Error404';
+
 
 export const PATH = {
   PROFILE: '/profile',
@@ -16,6 +18,7 @@ export const PATH = {
   FORGOT_PASSWORD: '/forgotPassword',
   CREATE_NEW_PASSWORD: '/createNewPassword/:token',
   CHECK_EMAIL: '/checkEmail',
+  ERROR404: '*'
 }
 
 export const Pages = () => {
@@ -30,6 +33,7 @@ export const Pages = () => {
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
       <Route path={PATH.CARD} element={<Card/>}/>
       <Route path={PATH.PROFILE} element={<Profile/>}/>
+      <Route path={PATH.ERROR404} element={<Error404/>}/>
     </Routes>
   </>
 }
