@@ -10,6 +10,8 @@ import {Button} from '../common/Button';
 
 export const Headers = () => {
   const isLogin = useAppSelector(state => state.login.isLogin)
+  const name = useAppSelector(state => state.profile.user.name)
+  const avatar = useAppSelector(state => state.profile.user.avatar)
   const navigate = useNavigate()
   const loginHandler = () => {
     navigate(PATH.LOGIN)
@@ -23,7 +25,7 @@ export const Headers = () => {
               <img src={logo} alt="logo"/>
             </NavLink>
           </div>
-          {isLogin ? <Avatar name={'user.name'} width={'36px'}/> :
+          {isLogin ? <Avatar src={avatar} name={name} width={'36px'}/> :
             <div className={s.button}><Button name="Sign In" callback={loginHandler}/></div>
           }
         </div>
