@@ -1,25 +1,34 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {LoginParamType} from '../../api/types';
 import {authApi} from '../../api/AuthApi';
+import {setProfile} from '../Profile/ProfileReducer';
+import {setAppStatus} from '../../app/AppReducer';
+import {handleAsyncServerNetworkError} from '../../utils/ErrorUtils';
+import {successRequest} from '../../utils/SuccessRequest';
 
 export const setLogin = createAsyncThunk<{ isLogin: boolean }, { loginData: LoginParamType }, { rejectValue: { error: string | undefined } }>(
   'login/setLogin', async (param, ThunkApi) => {
-    const res = await authApi.login(param.loginData)
+    ThunkApi.dispatch(setAppStatus({status:'loading'}))
     try {
+    const res = await authApi.login(param.loginData)
+      successRequest(ThunkApi)
+      ThunkApi.dispatch(setProfile(res.data))
       return {isLogin: true}
-    } catch (error: any) {
-      return ThunkApi.rejectWithValue({error: res.data.error})
+    } catch (error) {
+     return handleAsyncServerNetworkError(error, ThunkApi)
     }
   }
 )
 
 export const setLogout = createAsyncThunk<{ isLogin: boolean }, undefined, { rejectValue: { error: string | undefined } }>(
   'login/setLogout', async (param, ThunkApi) => {
-    const res = await authApi.logout()
+    ThunkApi.dispatch(setAppStatus({status:'loading'}))
     try {
+      const res = await authApi.logout()
+      successRequest(ThunkApi)
       return {isLogin: false}
-    } catch (e) {
-      return ThunkApi.rejectWithValue({error: res.data.error})
+    } catch (error: any) {
+      return handleAsyncServerNetworkError(error, ThunkApi)
     }
   }
 )

@@ -1,0 +1,7 @@
+.errorBar{
+    width: 35%;
+    height: 75px;
+    position: absolute;
+    top: 85%;
+    left: 5%;
+}
