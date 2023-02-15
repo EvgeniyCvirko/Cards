@@ -11,17 +11,22 @@ export const App = () => {
   const isInitialized = useAppSelector(state => state.app.isInitialized)
   const status = useAppSelector(state => state.app.status)
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     dispatch(setIsInitialized())
-  }, [])
+  }, [dispatch])
 
   if (!isInitialized ) {
     return <Loading/>
   }
   return (
-    <>
-      <Headers/>
-      <Pages/>
-    </>
+    <div className={s.app}>
+      <div className={s.container}>
+        {status === 'loading' && <Loading/>}
+        <Headers/>
+        <Pages/>
+        <ErrorBar/>
+      </div>
+    </div>
   );
 }
