@@ -1,11 +1,12 @@
 .registerForm {
     max-width: 300px;
-    margin: 150px auto;
+    margin: 0 auto;
 }
 
 .link {
     text-align: center;
 }
+
 .link p {
     margin: 0 0 10px 0;
 }

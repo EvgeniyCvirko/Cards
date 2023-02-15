@@ -1,6 +1,7 @@
 import React from 'react'
 import {Checkbox, Form} from 'antd';
 import s from '../Auth/Login.module.css'
+import cs from '../../routing/Pages.module.css'
 import {setLogin} from './LoginReducer';
 import {LoginParamType} from '../../api/types';
 import {useAppDispatch, useAppSelector} from '../../utils/hooks';
@@ -20,7 +21,8 @@ export const Login = () => {
   if (isLogin) {
     return <Navigate to="/"/>
   }
-  return (
+  return (<div className={cs.block}>
+    <h1 className={cs.title}>SING IN</h1>
     <Form
       name="login"
       className={s.loginForm}
@@ -29,8 +31,7 @@ export const Login = () => {
       }}
       onFinish={loginHandler}
     >
-      <div>Email: incubatorfriday@gmail.com</div>
-      <div>Password: 123FridayIncubator123</div>
+
       <InputForm name="email"/>
       <PasswordForm name="password"/>
       <Form.Item>
@@ -44,5 +45,5 @@ export const Login = () => {
       <div className={s.link}>Or <NavLink to={PATH.REGISTER}>register now!</NavLink></div>
 
     </Form>
-  );
+  </div>);
 }

@@ -7,6 +7,7 @@ import {sendEmail} from './ForgotPasswordReducer';
 import s from './ForgotPassword.module.css';
 import {ButtonForm} from '../../../components/FormItem/ButtonForm';
 import {InputForm} from '../../../components/FormItem/InputForm';
+import cs from '../../../routing/Pages.module.css';
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()
@@ -15,19 +16,21 @@ export const ForgotPassword = () => {
     dispatch(sendEmail(values.email))
   };
   if (status === 'succeeded') return <Navigate to={PATH.CHECK_EMAIL}/>;
-  return (<>
-    <Form
-      name="forgotPassword"
-      className={s.forgotPassword}
-      onFinish={onHandler}
-    >
-      <InputForm name="email"/>
-      <div className={s.text}>Enter your email address and we will send you further instructions</div>
-      <ButtonForm name="Send Instructions"/>
-      <div className={s.link}>
-        <div className={s.text}>Did you remember your password?</div>
-        <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
-      </div>
-    </Form>
-  </>);
+  return (
+    <div className={cs.block}>
+      <h1 className={cs.title}>Forgot your password?</h1>
+      <Form
+        name="forgotPassword"
+        className={s.forgotPassword}
+        onFinish={onHandler}
+      >
+        <InputForm name="email"/>
+        <div className={s.text}>Enter your email address and we will send you further instructions</div>
+        <ButtonForm name="Send Instructions"/>
+        <div className={s.link}>
+          <div className={s.text}>Did you remember your password?</div>
+          <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
+        </div>
+      </Form>
+    </div>);
 }
