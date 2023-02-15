@@ -1,17 +1,24 @@
-import React from 'react'
-import './CheckEmail.css'
+import React, {useEffect} from 'react'
+import s from './CheckEmail.module.css'
 import img from '../../../components/assets/forgot/Check.png'
 import {useNavigate} from 'react-router-dom';
-import {useAppSelector} from '../../../utils/hooks';
+import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {PATH} from '../../../routing/Pages';
+import {setAppStatus} from '../../../app/AppReducer';
+import {Button} from '../../../components/common/Button';
 
 export const CheckEmail = () => {
   const email = useAppSelector(state => state.forgotPassword.email)
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const backLoginHandler = () => {
     navigate(PATH.LOGIN)
   };
-  console.log('chek')
+
+  useEffect(() => {
+    dispatch(setAppStatus({status: 'idle'}));
+  }, [dispatch]);
+
   return (
     <div className={s.formCheckEmail}>
       <h1>Check Email</h1>
