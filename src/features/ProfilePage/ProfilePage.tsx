@@ -1,21 +1,18 @@
-import {Breadcrumb, Layout, theme} from 'antd';
+import {Breadcrumb, Layout} from 'antd';
 import React from 'react';
-import './Profile.css'
 import {useAppDispatch, useAppSelector} from '../../utils/hooks';
 import {Navigate} from 'react-router-dom';
 import {setLogout} from '../Auth/LoginReducer';
+import {Profile} from './Profile/Profile';
 
-export const Profile = () => {
-  console.log('ProfilePage')
+export const ProfilePage = () => {
   const isLogin = useAppSelector(state => state.login.isLogin)
+  const profile = useAppSelector(state => state.profile)
   const dispatch = useAppDispatch()
   const logOutHandler = () => {
     dispatch(setLogout())
   }
-  debugger
-  const {
-    token: {colorBgContainer},
-  } = theme.useToken();
+
   if (!isLogin) {
     return <Navigate to="/login"/>
   }
@@ -23,16 +20,9 @@ export const Profile = () => {
     <Layout>
       <Layout.Content style={{padding: '0 50px'}}>
         <Breadcrumb style={{margin: '90px 0 25px 0 '}}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
+          <Breadcrumb.Item>Back to Packs List</Breadcrumb.Item>
         </Breadcrumb>
-        <div className="site-layout-content" style={{background: colorBgContainer}}>
-          Profile
-          <div>
-            <button onClick={logOutHandler}>LogOut</button>
-          </div>
-        </div>
+          <Profile/>
       </Layout.Content>
 
     </Layout>
