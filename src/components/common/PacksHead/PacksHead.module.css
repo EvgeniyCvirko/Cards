@@ -1,0 +1,17 @@
+.head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    color: #000000;
+}
+
+.head button {
+    width: 150px;
+}
+
