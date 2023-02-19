@@ -1,0 +1,24 @@
+.editableSpan {
+    text-align: center;
+    margin-top: 25px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+}
+.editableSpan input{
+    width: 50%;
+}
+.editeButton{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.editeButton:hover {
+    border-radius: 50%;
+    background-color: #e5e5e5;
+}
+.editableSpan button{
+    width: 100px;
+}
