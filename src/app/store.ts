@@ -4,11 +4,13 @@ import thunkMiddleware from 'redux-thunk'
 import {appReducer} from './AppReducer';
 import {loginReducer} from '../features/Auth/LoginReducer';
 import {forgotPasswordReducer} from '../features/Auth/ForgotPassword/ForgotPasswordReducer';
+import {profileReducer} from '../features/ProfilePage/ProfileReducer';
 
 export const rootReducer = combineReducers({
   app: appReducer,
   login: loginReducer,
   forgotPassword: forgotPasswordReducer,
+  profile: profileReducer,
 })
 export type AppRootStateType = ReturnType<typeof rootReducer>
 

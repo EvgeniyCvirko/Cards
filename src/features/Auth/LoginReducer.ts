@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {LoginParamType} from '../../api/types';
 import {authApi} from '../../api/AuthApi';
-import {setProfile} from '../Profile/ProfileReducer';
+import {setProfile} from '../ProfilePage/ProfileReducer';
 import {setAppStatus} from '../../app/AppReducer';
 import {handleAsyncServerNetworkError} from '../../utils/ErrorUtils';
 import {successRequest} from '../../utils/SuccessRequest';

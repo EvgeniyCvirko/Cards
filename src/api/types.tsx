@@ -15,12 +15,13 @@ export type UserType = {
   name: string;
   avatar?: string;
   publicCardPacksCount: number;
-  created: Date;
-  updated: Date;
+  created: string;
+  updated: string;
   isAdmin: boolean;
   verified: boolean;
   rememberMe: boolean;
   error?: string;
+  _v: number;
 }
 export type ErrorDataResponseType = {
   error: string
@@ -36,4 +37,13 @@ export type ForgotDataType = {
 export type NewPasswordDataType = {
   password: string,
   resetPasswordToken: string,
+}
+export type ChangeProfileDataType = {
+  name: string,
+  avatar: string,
+}
+export type ResponseUser = {
+  updatedUser: UserType,
+  token: string,
+  tokenDeathTim:number
 }

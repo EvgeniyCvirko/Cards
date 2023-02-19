@@ -1,12 +1,5 @@
 import axios from 'axios'
-import {
-  ChangeProfileDataType,
-  ForgotDataType,
-  LoginParamType,
-  NewPasswordDataType,
-  RegisterDataType,
-  UserType
-} from './types';
+import {ChangeProfileDataType, ResponseUser} from './types';
 
 export const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -15,6 +8,6 @@ export const instance = axios.create({
 
 export const profileApi = {
   changeProfile(payload: ChangeProfileDataType) {
-    return instance.put<UserType>('/auth/me', payload)
+    return instance.put<ResponseUser>('/auth/me', payload)
   },
 }

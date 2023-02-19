@@ -2,14 +2,16 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {ChangeProfileDataType, UserType} from '../../api/types';
 import {profileApi} from '../../api/ProfileApi';
 import {handleAsyncServerNetworkError} from '../../utils/ErrorUtils';
+import {setAppStatus} from '../../app/AppReducer';
+import {successRequest} from '../../utils/SuccessRequest';
 
 export const changeProfile = createAsyncThunk<{ profile: UserType }, { changeProfileData: ChangeProfileDataType }, { rejectValue: { error: string | undefined } }>(
   'profile/changeProfile', async (param, ThunkApi) => {
-
+    ThunkApi.dispatch(setAppStatus({status:'loading'}))
     try {
       const res = await profileApi.changeProfile(param.changeProfileData)
-      console.log(res.data)
-      return {profile: res.data}
+      successRequest(ThunkApi)
+      return {profile: res.data.updatedUser}
     } catch (error) {
       return handleAsyncServerNetworkError(error,ThunkApi, true)
     }
@@ -33,9 +35,10 @@ export const slice = createSlice({
     rememberMe: false,
     error: '',
     _v: 0,
+
+  } as UserType,
     tokenDeathTime: 0,
     token: '',
-  } as UserType
   },
   reducers: {
     setProfile(state, action: PayloadAction<UserType >) {

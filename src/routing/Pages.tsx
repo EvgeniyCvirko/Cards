@@ -3,7 +3,7 @@ import {Navigate, Route, Routes} from 'react-router-dom';
 import React from 'react';
 import {Register} from '../features/Register/Register';
 import {Login} from '../features/Auth/Login';
-import {Profile} from '../features/Profile/Profile';
+import {ProfilePage} from '../features/ProfilePage/ProfilePage';
 import {ForgotPassword} from '../features/Auth/ForgotPassword/ForgotPassword';
 import {CheckEmail} from '../features/Auth/CheckEmail/CheckEmail';
 import {CreateNewPassword} from '../features/Auth/CreateNewPassword/CreateNewPassword';
@@ -32,7 +32,7 @@ export const Pages = () => {
       <Route path={PATH.CREATE_NEW_PASSWORD} element={<CreateNewPassword/>}/>
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
       <Route path={PATH.CARD} element={<Card/>}/>
-      <Route path={PATH.PROFILE} element={<Profile/>}/>
+      <Route path={PATH.PROFILE} element={<ProfilePage/>}/>
       <Route path={PATH.ERROR404} element={<Error404/>}/>
     </Routes>
   </>

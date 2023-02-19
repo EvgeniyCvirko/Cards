@@ -3,9 +3,10 @@ import cs from '../../../routing/Pages.module.css';
 import s from './Profile.module.css'
 import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {setLogout} from '../../Auth/LoginReducer';
-import {Avatar} from '../../../components/Avatar/Avatar';
+import {Avatars} from '../../../components/Avatars/Avatars';
 import {EditableSpan} from '../../../components/common/EditableSpan/EditableSpan';
 import {changeProfile} from '../ProfileReducer';
+import {Button} from '../../../components/common/Button/Button';
 
 export const Profile = () => {
   const avatar = useAppSelector(state => state.profile.user.avatar)
@@ -15,26 +16,24 @@ export const Profile = () => {
   const logOutHandler = () => {
       dispatch(setLogout())
   }
-  console.log(avatar)
   const changeAvatarHandler = ()=>{
     console.log('changeFoto')
   }
 
-  const changeNameHandler = (name:string) => {
-    if(avatar){
+  const changeNameHandler = (name:string) =>{
+  if(avatar){
       const data ={ name, avatar}
-      console.log(data)
       dispatch(changeProfile({changeProfileData: data}))
     }
   }
   return (
         <div className={cs.block}>
           <div className={cs.title}>Personal Information</div>
-          <Avatar src={avatar} mode='profile' callback={changeAvatarHandler}/>
+          <Avatars src={avatar} mode='profile' callback={changeAvatarHandler}/>
           <EditableSpan value={name} callback={changeNameHandler}/>
-          <p>{email}</p>
-          <div>
-            <button onClick={logOutHandler}>LogOut</button>
+          <p className={s.email}>{email}</p>
+          <div className={s.button}>
+            <Button name='LogOut' callback={logOutHandler}/>
           </div>
         </div>
   )

@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {StatusType} from '../types/commonTypes';
 import {setIsLogin} from '../features/Auth/LoginReducer';
 import {authApi} from '../api/AuthApi';
-import {setProfile} from '../features/Profile/ProfileReducer';
+import {setProfile} from '../features/ProfilePage/ProfileReducer';
 import {handleAsyncServerNetworkError} from '../utils/ErrorUtils';
 import {successRequest} from '../utils/SuccessRequest';
 
