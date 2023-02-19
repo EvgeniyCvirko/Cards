@@ -22,7 +22,7 @@ export const CreateNewPassword = () => {
 
   return (
     <div className={cs.block}>
-      <h1 className={cs.title}>Create new password</h1>
+      <div className={cs.title}>Create new password</div>
       <Form
         name="createPassword"
         className={s.createPassword}

@@ -22,7 +22,7 @@ export const Login = () => {
     return <Navigate to="/"/>
   }
   return (<div className={cs.block}>
-    <h1 className={cs.title}>SING IN</h1>
+    <div className={cs.title}>SING IN</div>
     <Form
       name="login"
       className={s.loginForm}

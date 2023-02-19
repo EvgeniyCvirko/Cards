@@ -22,7 +22,7 @@ export const CheckEmail = () => {
 
   return (
     <div className={cs.block}>
-      <h1 className={cs.title}>Check Email</h1>
+      <div className={cs.title}>Check Email</div>
       <div className={s.formCheckEmail}>
         <div>
           <img src={img} alt={'image'}/>

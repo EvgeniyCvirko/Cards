@@ -18,7 +18,7 @@ export const ForgotPassword = () => {
   if (status === 'succeeded') return <Navigate to={PATH.CHECK_EMAIL}/>;
   return (
     <div className={cs.block}>
-      <h1 className={cs.title}>Forgot your password?</h1>
+      <div className={cs.title}>Forgot your password?</div>
       <Form
         name="forgotPassword"
         className={s.forgotPassword}
