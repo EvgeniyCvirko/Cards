@@ -3,9 +3,9 @@ import s from './Headers.module.css'
 import {NavLink, useNavigate} from 'react-router-dom'
 import logo from '../assets/logo.svg'
 import {useAppSelector} from '../../utils/hooks';
-import {Avatar} from '../Avatar/Avatar';
+import {Avatars} from '../Avatars/Avatars';
 import {PATH} from '../../routing/Pages';
-import {Button} from '../common/Button';
+import {Button} from '../common/Button/Button';
 
 
 export const Headers = () => {
@@ -25,7 +25,12 @@ export const Headers = () => {
               <img src={logo} alt="logo"/>
             </NavLink>
           </div>
-          {isLogin ? <Avatar src={avatar} name={name} width={'36px'}/> :
+          {isLogin ?
+            <div className={s.avatar}>
+              <p>{name}</p>
+              <Avatars src={avatar} width={36}/>
+            </div>
+            :
             <div className={s.button}><Button name="Sign In" callback={loginHandler}/></div>
           }
         </div>

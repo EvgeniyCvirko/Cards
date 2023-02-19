@@ -1,13 +1,14 @@
-.block {
+.avatar {
     position: relative;
 
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .circle {
     position: absolute;
-    right: 0;
+    right: 157px;
     bottom: 0;
 
     display: flex;

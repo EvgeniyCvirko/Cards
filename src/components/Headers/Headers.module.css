@@ -44,3 +44,12 @@ display: flex;
     justify-content: center;
     width: 150px;
 }
+
+.avatar{
+    display: flex;
+    align-items: center;
+}
+
+.avatar p {
+    border-bottom: 1px dashed #000000;
+}
