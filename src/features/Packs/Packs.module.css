@@ -4,7 +4,21 @@
 
 .main{
     display: flex;
-
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+.radioGroup{
+}
+.search {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 350px;
+
+}
+.slider{
+    flex-basis: 350px;
+}
+.filter{
+    font-size: 36px;
 }

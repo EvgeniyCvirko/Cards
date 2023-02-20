@@ -1,9 +1,12 @@
-import {Layout, Radio} from 'antd';
+import {Layout, Radio, Slider} from 'antd';
+import {FilterOutlined} from '@ant-design/icons'
 import React, {useState} from 'react';
 import './Packs.module.css'
 import {PacksHead} from '../../components/common/PacksHead/PacksHead';
 import s from './Packs.module.css'
 import {Search} from '../../components/common/Search/Search';
+import {SubTitle} from '../../components/common/SubTitle/SubTitle';
+import {OwnSlider} from '../../components/common/OwnSlider/OwnSlider';
 
 export const Packs = () => {
   const [identity, setIdentity] = useState<string>('My')
@@ -17,11 +20,22 @@ export const Packs = () => {
           <PacksHead title="Packs list" name="Add new pack" callback={packsHandler}/>
         </div>
         <div className={s.main}>
-          <Search width='400px'/>
-          <Radio.Group value={identity} onChange={(e) => setIdentity(e.target.value)}>
-            <Radio.Button value="My">My</Radio.Button>
-            <Radio.Button value="All">All</Radio.Button>
-          </Radio.Group>
+          <div className={s.search}>
+            <SubTitle title="Search"/>
+            <Search/>
+          </div>
+          <div className={s.radioGroup}>
+            <SubTitle title="Show packs cards"/>
+            <Radio.Group value={identity} onChange={(e) => setIdentity(e.target.value)}>
+              <Radio.Button style={{width: '75px'}} value="My">My</Radio.Button>
+              <Radio.Button style={{width: '75px'}} value="All">All</Radio.Button>
+            </Radio.Group>
+          </div>
+          <div className={s.slider}>
+            <SubTitle title="Number of cards"/>
+            <OwnSlider/>
+          </div>
+          <FilterOutlined className={s.filter}/>
         </div>
       </Layout.Content>
     </Layout>
