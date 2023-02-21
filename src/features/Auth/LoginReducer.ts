@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {LoginParamType} from '../../api/types';
 import {authApi} from '../../api/AuthApi';
 import {setProfile} from '../ProfilePage/ProfileReducer';
 import {setAppStatus} from '../../app/AppReducer';
 import {handleAsyncServerNetworkError} from '../../utils/ErrorUtils';
 import {successRequest} from '../../utils/SuccessRequest';
+import {LoginParamType} from '../../api/DataTypes';
 
 export const setLogin = createAsyncThunk<{ isLogin: boolean }, { loginData: LoginParamType }, { rejectValue: { error: string | undefined } }>(
   'login/setLogin', async (param, ThunkApi) => {

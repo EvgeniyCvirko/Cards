@@ -2,7 +2,6 @@ import React from 'react'
 import {LockOutlined} from '@ant-design/icons';
 import {Form, Input} from 'antd';
 import s from './Register.module.css'
-import {RegisterDataType} from '../../api/types';
 import {useAppDispatch} from '../../utils/hooks';
 import {NavLink} from 'react-router-dom';
 import {setRegister} from './RegisterThunk';
@@ -11,6 +10,7 @@ import {ButtonForm} from '../../components/FormItem/ButtonForm';
 import {InputForm} from '../../components/FormItem/InputForm';
 import {PasswordForm} from '../../components/FormItem/PasswordForm';
 import cs from '../../routing/Pages.module.css';
+import {RegisterDataType} from '../../api/DataTypes';
 
 export const Register = () => {
   const dispatch = useAppDispatch()

@@ -1,5 +1,7 @@
 import axios from 'axios'
-import {ForgotDataType, LoginParamType, NewPasswordDataType, RegisterDataType, UserType} from './types';
+import {ForgotDataType, LoginParamType, NewPasswordDataType, RegisterDataType} from './DataTypes';
+import {UserType} from './ResponceTypes';
+
 
 export const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',

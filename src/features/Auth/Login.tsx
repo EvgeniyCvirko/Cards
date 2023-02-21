@@ -3,13 +3,13 @@ import {Checkbox, Form} from 'antd';
 import s from '../Auth/Login.module.css'
 import cs from '../../routing/Pages.module.css'
 import {setLogin} from './LoginReducer';
-import {LoginParamType} from '../../api/types';
 import {useAppDispatch, useAppSelector} from '../../utils/hooks';
 import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from '../../routing/Pages';
 import {ButtonForm} from '../../components/FormItem/ButtonForm';
 import {InputForm} from '../../components/FormItem/InputForm';
 import {PasswordForm} from '../../components/FormItem/PasswordForm';
+import {LoginParamType} from '../../api/DataTypes';
 
 export const Login = () => {
   const dispatch = useAppDispatch()

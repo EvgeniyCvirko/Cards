@@ -1,11 +1,10 @@
-//thunk
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {repairPassword} from '../../../api/AuthApi';
 import {letter} from './letter';
 import {setAppStatus} from '../../../app/AppReducer';
-import {NewPasswordDataType} from '../../../api/types';
 import {handleAsyncServerNetworkError} from '../../../utils/ErrorUtils';
 import {successRequest} from '../../../utils/SuccessRequest';
+import {NewPasswordDataType} from '../../../api/DataTypes';
 
 export const sendEmail = createAsyncThunk<{ email: string }, string, { rejectValue: { error: string | undefined } }>(
   'forgotPassword/sendEmail', async (email: string, ThunkApi) => {
