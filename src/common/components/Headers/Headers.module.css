@@ -18,6 +18,10 @@
     align-items: center;
     justify-content: space-between;
 }
+.wrapper a {
+    color: #000 !important;
+    text-decoration: none
+}
 
 .block{
     display: flex;

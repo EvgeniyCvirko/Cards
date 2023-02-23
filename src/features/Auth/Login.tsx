@@ -19,7 +19,7 @@ export const Login = () => {
     dispatch(setLogin({loginData: values}))
   };
   if (isLogin) {
-    return <Navigate to="/"/>
+    return <Navigate to={PATH.PACKS}/>
   }
   return (<div className={cs.block}>
     <div className={cs.title}>SING IN</div>

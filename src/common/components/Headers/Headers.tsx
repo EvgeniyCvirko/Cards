@@ -21,15 +21,17 @@ export const Headers = () => {
       <div className={s.container}>
         <div className={s.wrapper}>
           <div className={s.incubator}>
-            <NavLink to={'/'}>
+            <NavLink to={PATH.PROFILE}>
               <img src={logo} alt="logo"/>
             </NavLink>
           </div>
           {isLogin ?
-            <div className={s.avatar}>
-              <p>{name}</p>
-              <Avatars src={avatar} width={36}/>
-            </div>
+            <NavLink to={PATH.PROFILE}>
+              <div className={s.avatar}>
+                <p>{name}</p>
+                <Avatars src={avatar} width={36}/>
+              </div>
+            </NavLink>
             :
             <div className={s.button}><Button name="Sign In" callback={loginHandler}/></div>
           }
