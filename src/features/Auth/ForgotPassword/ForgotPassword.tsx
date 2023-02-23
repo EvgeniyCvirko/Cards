@@ -5,9 +5,9 @@ import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {PATH} from '../../../routing/Pages';
 import {sendEmail} from './ForgotPasswordReducer';
 import s from './ForgotPassword.module.css';
-import {ButtonForm} from '../../../components/FormItem/ButtonForm';
-import {InputForm} from '../../../components/FormItem/InputForm';
 import cs from '../../../routing/Pages.module.css';
+import {InputForm} from '../../../common/components/FormItem/InputForm';
+import {ButtonForm} from '../../../common/components/FormItem/ButtonForm';
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()

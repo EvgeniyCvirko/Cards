@@ -3,9 +3,9 @@ import s from './App.module.css';
 import {Pages} from '../routing/Pages';
 import {setIsInitialized} from './AppReducer';
 import {useAppDispatch, useAppSelector} from '../utils/hooks';
-import {Headers} from '../components/Headers/Headers';
-import {Loading} from '../components/Loading/Loading';
-import {ErrorBar} from '../components/ErrorBar/ErrorBar';
+import {Loading} from '../common/components/Loading/Loading';
+import {ErrorBar} from '../common/components/ErrorBar/ErrorBar';
+import {Headers} from '../common/components/Headers/Headers';
 
 export const App = () => {
   const isInitialized = useAppSelector(state => state.app.isInitialized)

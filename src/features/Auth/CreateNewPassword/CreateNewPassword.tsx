@@ -5,8 +5,8 @@ import s from './CreateNewPassword.module.css'
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../../utils/hooks';
 import {sendNewPassword} from '../ForgotPassword/ForgotPasswordReducer';
-import {ButtonForm} from '../../../components/FormItem/ButtonForm';
 import cs from '../../../routing/Pages.module.css';
+import {ButtonForm} from '../../../common/components/FormItem/ButtonForm';
 
 export const CreateNewPassword = () => {
   const dispatch = useAppDispatch()

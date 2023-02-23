@@ -2,10 +2,10 @@ import React from 'react';
 import s from './Headers.module.css'
 import {NavLink, useNavigate} from 'react-router-dom'
 import logo from '../assets/logo.svg'
-import {useAppSelector} from '../../utils/hooks';
 import {Avatars} from '../Avatars/Avatars';
-import {PATH} from '../../routing/Pages';
 import {Button} from '../common/Button/Button';
+import {useAppSelector} from '../../../utils/hooks';
+import {PATH} from '../../../routing/Pages';
 
 
 export const Headers = () => {

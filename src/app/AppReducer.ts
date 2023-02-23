@@ -7,7 +7,7 @@ import {handleAsyncServerNetworkError} from '../utils/ErrorUtils';
 import {successRequest} from '../utils/SuccessRequest';
 
 
-export const setIsInitialized = createAsyncThunk<{ isInitialized: boolean }, undefined, { rejectValue: { error: string | undefined } }>
+export const setIsInitialized = createAsyncThunk<{isInitialized: boolean}, undefined, { rejectValue: { errors: string} }>
 ('app/setInitial', async (param, ThunkApi) => {
   ThunkApi.dispatch(setAppStatus({status:'loading'}))
   try {
@@ -39,8 +39,8 @@ export const slice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(setIsInitialized.fulfilled, (state, action) => {
-      state.isInitialized = action.payload.isInitialized
+    builder.addCase(setIsInitialized.fulfilled, state => {
+      state.isInitialized = true
     })
   }
 })

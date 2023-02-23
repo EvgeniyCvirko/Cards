@@ -6,10 +6,10 @@ import {setLogin} from './LoginReducer';
 import {useAppDispatch, useAppSelector} from '../../utils/hooks';
 import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from '../../routing/Pages';
-import {ButtonForm} from '../../components/FormItem/ButtonForm';
-import {InputForm} from '../../components/FormItem/InputForm';
-import {PasswordForm} from '../../components/FormItem/PasswordForm';
 import {LoginParamType} from '../../api/DataTypes';
+import {InputForm} from '../../common/components/FormItem/InputForm';
+import {ButtonForm} from '../../common/components/FormItem/ButtonForm';
+import {PasswordForm} from '../../common/components/FormItem/PasswordForm';
 
 export const Login = () => {
   const dispatch = useAppDispatch()

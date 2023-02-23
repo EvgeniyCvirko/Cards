@@ -1,0 +1,33 @@
+.button {
+    cursor: pointer;
+
+    display: inline-block;
+
+    width: 50%;
+    height: 36px;
+
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+
+    background-color: #366EFF;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    transition: all 1s ease-out;
+}
+
+.button:hover {
+    background-color: #2e52e3
+}
+
+.button:active {
+    opacity: 0.4;
+    box-shadow: #2e52e3;
+}
+
+
+

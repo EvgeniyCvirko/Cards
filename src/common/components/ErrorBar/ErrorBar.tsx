@@ -1,8 +1,8 @@
 import React from 'react'
 import {Alert, Space} from 'antd';
-import {useAppDispatch, useAppSelector} from '../../utils/hooks';
 import s from './ErrorBar.module.css'
-import {setAppError} from '../../app/AppReducer';
+import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
+import {setAppError} from '../../../app/AppReducer';
 
 export const ErrorBar = () => {
   const error = useAppSelector(state => state.app.error)

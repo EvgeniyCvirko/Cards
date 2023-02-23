@@ -7,8 +7,8 @@ import {ProfilePage} from '../features/ProfilePage/ProfilePage';
 import {ForgotPassword} from '../features/Auth/ForgotPassword/ForgotPassword';
 import {CheckEmail} from '../features/Auth/CheckEmail/CheckEmail';
 import {CreateNewPassword} from '../features/Auth/CreateNewPassword/CreateNewPassword';
-import {Error404} from '../components/Error404/Error404';
 import {Packs} from '../features/Packs/Packs';
+import {Error404} from '../common/components/Error404/Error404';
 
 
 export const PATH = {
