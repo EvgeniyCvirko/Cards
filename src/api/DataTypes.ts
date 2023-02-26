@@ -33,6 +33,12 @@ export type PacksParamType = {
   block?: boolean,
 }
 
+export type AddPacksType = {
+  name: string
+  deckCover?: string
+  private?: boolean
+}
+
 export type CardPackType = {
   _id: string,
   user_id: string,
