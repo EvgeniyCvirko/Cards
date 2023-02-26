@@ -1,3 +1,5 @@
+import {CardPackType} from './DataTypes';
+
 export type UserType = {
   _id: string;
   email: string;
@@ -17,3 +19,20 @@ export type ResponseUser = {
   token: string,
   tokenDeathTim:number
 }
+
+export type ResponseCardsPack = {
+  newCardsPack: CardPackType,
+  token: string,
+  tokenDeathTim:number
+}
+export type  GetPacksResponseType = {
+  cardPacks: Array<CardPackType>;
+  page: number;
+  pageCount: number;
+  cardPacksTotalCount: number;
+  minCardsCount: number;
+  maxCardsCount: number,
+  token: string,
+  tokenDeathTime: number,
+}
+
