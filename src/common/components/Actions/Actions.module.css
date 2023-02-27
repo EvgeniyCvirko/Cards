@@ -1,0 +1,10 @@
+.actions {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notActive{
+    opacity: 0.5;
+}
