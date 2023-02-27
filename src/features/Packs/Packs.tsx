@@ -12,8 +12,9 @@ import {useAppDispatch, useAppSelector} from '../../utils/hooks';
 import {getPacks} from './PacksReducer';
 import {PaginationComponent} from '../../common/components/common/PaginationComponent/PaginationComponent';
 import {setPacksParam} from './PacksParamReducer';
-import {AddCardHelperType, PackModal} from '../../common/components/common/PackModal/PackModal';
-import {addCardPack} from './PackThunk/PackThunk';
+import {BasicModal} from '../Modal/BasicModal';
+import {setOpenCardPack} from '../Modal/ModalReducer';
+import {title} from '../../common/enums/Title';
 
 export const Packs = () => {
   const dispatch = useAppDispatch()
@@ -21,18 +22,13 @@ export const Packs = () => {
   const profile = useAppSelector(state => state.profile.user)
   const packsParam = useAppSelector(state => state.packsParam)
   const [identity, setIdentity] = useState<string>('All')
-  const [open, setOpen] = useState(false);
 
   const addPack = () => {
-    setOpen(true)
+    dispatch(setOpenCardPack({
+      state: {title: title.addTitleCardPack, open: true}
+    }))
   }
-  const addCard = async (name: string, isPrivate: boolean, helper: AddCardHelperType) => {
-    const result = await dispatch(addCardPack({name, private: isPrivate}))
-    if (result.meta.requestStatus) {
-      helper.setLoading(false)
-      setOpen(false)
-    }
-  }
+
   const changeRadioValue = (e: RadioChangeEvent) => {
     if (e.target.value === 'My') {
       dispatch(setPacksParam({user_id: profile._id}))
@@ -59,12 +55,7 @@ export const Packs = () => {
                      callback={addPack}
           />
         </div>
-        {open && <PackModal open
-                            callback={addCard}
-                            closeModal={setOpen}
-                            title="Add new Pack"
-                            isDoing="Save"
-        />}
+        <BasicModal/>
         <div className={s.main}>
           <div className={s.search}>
             <SubTitle title="Search"/>

@@ -7,6 +7,7 @@ import {forgotPasswordReducer} from '../features/Auth/ForgotPassword/ForgotPassw
 import {profileReducer} from '../features/ProfilePage/ProfileReducer';
 import {packsReducer} from '../features/Packs/PacksReducer';
 import {packsParamReducer} from '../features/Packs/PacksParamReducer';
+import {modalReducer} from '../features/Modal/ModalReducer';
 
 export const rootReducer = combineReducers({
   app: appReducer,
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
   profile: profileReducer,
   packs: packsReducer,
   packsParam: packsParamReducer,
+  modal: modalReducer,
 })
 export type AppRootStateType = ReturnType<typeof rootReducer>
 

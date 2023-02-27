@@ -2,25 +2,46 @@ import React, {ChangeEvent, KeyboardEvent, useEffect, useRef, useState} from 're
 import s from './PackModal.module.css'
 import {Checkbox, Input, Modal} from 'antd';
 import {CheckboxChangeEvent} from 'antd/es/checkbox';
+import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
+import {addCardPack, updateCardPack} from '../../Packs/PackThunk/PackThunk';
+import {setOpenCardPack} from '../ModalReducer';
 
 export type AddCardHelperType = { setLoading: (loading: boolean) => void }
 
 type PackModalPropsType = {
-  open: boolean
-  closeModal: (value: boolean) => void
-  title: string
-  isDoing: string
-  callback: (name: string, isPrivate: boolean, helper: AddCardHelperType) => void
+  open: boolean,
+  title: string,
+  isDoing: string,
 }
 
-export const PackModal: React.FC<PackModalPropsType> = ({open, closeModal, title, isDoing, callback}) => {
+export const PackModal: React.FC<PackModalPropsType> = ({open, title, isDoing}) => {
+  const dispatch = useAppDispatch()
+  const _id = useAppSelector(state => state.modal._id)
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('')
   const [isPrivate, setIsPrivate] = useState(false)
   const inputRef = useRef(null);
 
+  const addCard = async (name: string, isPrivate: boolean, helper: AddCardHelperType) => {
+    let result
+    if (title === 'Add new pack') {
+      result = await dispatch(addCardPack({name, private: isPrivate}))
+      if (result.meta.requestStatus) {
+        helper.setLoading(false)
+        handleCancel()
+      }
+    } else {
+      if (_id) {
+        result = await dispatch(updateCardPack({_id, name, private: isPrivate}))
+        if (result.meta.requestStatus) {
+          helper.setLoading(false)
+          handleCancel()
+        }
+      }
+    }
+  }
   const handleOk = () => {
-    callback(name, isPrivate, {setLoading})
+    addCard(name, isPrivate, {setLoading})
     setLoading(true)
   };
   const privateHandler = (e: CheckboxChangeEvent) => {
@@ -30,7 +51,7 @@ export const PackModal: React.FC<PackModalPropsType> = ({open, closeModal, title
     setName(event.currentTarget.value)
   }
   const handleCancel = () => {
-    closeModal(false);
+    dispatch(setOpenCardPack({state: {title: '', open: false}}));
   };
   const onPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
     event.code === 'Enter' && handleOk()

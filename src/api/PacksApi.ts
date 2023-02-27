@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {AddPacksType, PacksParamType} from './DataTypes';
+import {AddPacksType, PacksParamType, UpdatePacksType} from './DataTypes';
 import {GetPacksResponseType, ResponseCardsPack} from './ResponceTypes';
 
 export const instance = axios.create({
@@ -14,10 +14,10 @@ export const packsApi = {
   addPack(cardsPack: AddPacksType) {
     return instance.post<ResponseCardsPack>('/cards/pack', {cardsPack})
   },
-  deletePack(id:string) {
-    return instance.delete<ResponseCardsPack>(`/cards/pack?${id}`)
+  deletePack(id: string) {
+    return instance.delete<ResponseCardsPack>(`/cards/pack?id=${id}`)
   },
-  updatePack(id:string, name?: string) {
-    return instance.put<ResponseCardsPack>(`/cards/pack?${id}`, {id,name})
+  updatePack(cardsPack: UpdatePacksType) {
+    return instance.put<ResponseCardsPack>(`/cards/pack`, {cardsPack})
   },
 }
