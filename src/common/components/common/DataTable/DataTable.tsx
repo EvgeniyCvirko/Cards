@@ -1,8 +1,9 @@
 import React from 'react';
 import {Table} from 'antd';
-import type {ColumnsType} from 'antd/es/table';
+import type { ColumnsType } from 'antd/es/table';
 import {CardPackType} from '../../../../api/DataTypes';
 import {Actions} from '../../Actions/Actions';
+import './DataTable.css'
 
 interface DataType {
   key: number;
@@ -20,6 +21,8 @@ export const DataTable = (props: DataTableType) => {
     {
       title: 'Name',
       dataIndex: 'title',
+      width:100,
+      className: 'Name',
     },
     {
       title: 'Cards',
