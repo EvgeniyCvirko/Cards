@@ -15,36 +15,50 @@ import {setPacksParam} from './PacksParamReducer';
 import {BasicModal} from '../Modal/BasicModal';
 import {setOpenCardPack} from '../Modal/ModalReducer';
 import {title} from '../../common/enums/Title';
+import {Navigate, useSearchParams} from 'react-router-dom';
+import {getActualUrlPacksParam} from '../../utils/getActualParam';
 
 export const Packs = () => {
   const dispatch = useAppDispatch()
+  const isLogin = useAppSelector(state => state.login.isLogin)
   const packs = useAppSelector(state => state.packs)
   const profile = useAppSelector(state => state.profile.user)
   const packsParam = useAppSelector(state => state.packsParam)
-  const [identity, setIdentity] = useState<string>('All')
+  let [identity, setIdentity] = useState<string>('All')
+  const [searchParams, setSearchParams] = useSearchParams();
+  profile._id === searchParams.get('user_id') ? identity = 'My' : identity = 'All'
+  const stateParams = getActualUrlPacksParam(searchParams)
 
   const addPack = () => {
     dispatch(setOpenCardPack({
       state: {title: title.addTitleCardPack, open: true}
     }))
   }
-
   const changeRadioValue = (e: RadioChangeEvent) => {
+    const queryParams: { user_id?: string } = {}
     if (e.target.value === 'My') {
-      dispatch(setPacksParam({user_id: profile._id}))
+      queryParams.user_id = profile._id
     } else {
-      dispatch(setPacksParam({user_id: undefined}))
+      searchParams.delete('user_id')
     }
+    setSearchParams({
+      ...Object.fromEntries(searchParams),
+      ...queryParams,
+    })
     setIdentity(e.target.value)
   }
 
-  const changePage = (page: number, pageCount: number) => {
-    dispatch(setPacksParam({pageCount, page}))
-  }
+  useEffect(() => {
+    dispatch(setPacksParam(stateParams))
+  }, [stateParams.user_id, stateParams.page, stateParams.pageCount])
 
   useEffect(() => {
-    dispatch(getPacks(packsParam))
+    dispatch(getPacks(stateParams))
   }, [packsParam.pageCount, packsParam.page, packsParam.user_id])
+
+  if (!isLogin) {
+    return <Navigate to="/login"/>
+  }
 
   return (
     <Layout>
@@ -77,7 +91,7 @@ export const Packs = () => {
         <div className={s.table}>
           <DataTable data={packs.cardPacks}/>
         </div>
-        <PaginationComponent changePageCount={changePage} total={packs.cardPacksTotalCount}/>
+        <PaginationComponent total={packs.cardPacksTotalCount}/>
       </Layout.Content>
     </Layout>
   )

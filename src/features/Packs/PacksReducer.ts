@@ -5,6 +5,7 @@ import {successRequest} from '../../utils/SuccessRequest';
 import {PacksParamType} from '../../api/DataTypes';
 import {GetPacksResponseType} from '../../api/ResponceTypes';
 import {packsApi} from '../../api/PacksApi';
+import {startPage, startPageCount} from '../../common/constants/projectConstant';
 
 export const getPacks = createAsyncThunk<{ packs: GetPacksResponseType }, PacksParamType , { rejectValue: { error: string | undefined } }>(
   'packs/getPacks', async (param, ThunkApi) => {
@@ -40,8 +41,8 @@ export const slice = createSlice({
       updated: '',
       __v: 0,
     }, ],
-    page: 1,
-    pageCount: 0,
+    page: startPage,
+    pageCount: startPageCount,
     cardPacksTotalCount: 0,
     minCardsCount: 0,
     maxCardsCount: 0,
