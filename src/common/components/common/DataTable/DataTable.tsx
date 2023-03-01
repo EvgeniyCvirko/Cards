@@ -27,6 +27,7 @@ export const DataTable = (props: DataTableType) => {
     {
       title: 'Cards',
       dataIndex: 'cardPacksTotalCount',
+      className: 'Cards',
 
     },
     {

@@ -1,8 +1,9 @@
-.ant-table-column-title {
-
-}
-.Name{
+.Name {
     max-width: 500px;
+    min-width: 500px;
+}
+.Cards {
+    max-width: 100px;
 }
 
 
