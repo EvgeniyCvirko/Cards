@@ -5,16 +5,16 @@ import {CheckboxChangeEvent} from 'antd/es/checkbox';
 import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {addCardPack, updateCardPack} from '../../Packs/PackThunk/PackThunk';
 import {setOpenCardPack} from '../ModalReducer';
+import {title} from '../../../common/enums/Title';
 
 export type AddCardHelperType = { setLoading: (loading: boolean) => void }
 
 type PackModalPropsType = {
   open: boolean,
-  title: string,
-  isDoing: string,
+  titleModal: string,
 }
 
-export const PackModal: React.FC<PackModalPropsType> = ({open, title, isDoing}) => {
+export const PackModal: React.FC<PackModalPropsType> = ({open, titleModal}) => {
   const dispatch = useAppDispatch()
   const _id = useAppSelector(state => state.modal._id)
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ export const PackModal: React.FC<PackModalPropsType> = ({open, title, isDoing}) 
 
   const addCard = async (name: string, isPrivate: boolean, helper: AddCardHelperType) => {
     let result
-    if (title === 'Add new pack') {
+    if (titleModal === title.addTitleCardPack) {
       result = await dispatch(addCardPack({name, private: isPrivate}))
       if (result.meta.requestStatus) {
         helper.setLoading(false)
@@ -63,12 +63,12 @@ export const PackModal: React.FC<PackModalPropsType> = ({open, title, isDoing}) 
 
   return <div>
     <Modal className={s.modal}
-           title={title}
+           title={titleModal}
            open={open}
            onOk={handleOk}
            confirmLoading={loading}
            onCancel={handleCancel}
-           okText={isDoing}
+           okText="Save"
     >
       <div className={s.input}>
         <Input placeholder="Name Pack"

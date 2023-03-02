@@ -1,4 +1,4 @@
-import {Card} from '../features/Card/Card';
+import {Cards} from '../features/Card/Cards';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import React from 'react';
 import {Register} from '../features/Register/Register';
@@ -19,7 +19,7 @@ export const PATH = {
   FORGOT_PASSWORD: '/forgotPassword',
   CREATE_NEW_PASSWORD: '/createNewPassword/:token',
   CHECK_EMAIL: '/checkEmail',
-  PACKS: '/packs',
+  PACKS: '/pack',
   ERROR404: '*'
 }
 
@@ -33,7 +33,7 @@ export const Pages = () => {
       <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
       <Route path={PATH.CREATE_NEW_PASSWORD} element={<CreateNewPassword/>}/>
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
-      <Route path={PATH.CARD} element={<Card/>}/>
+      <Route path={PATH.CARD} element={<Cards/>}/>
       <Route path={PATH.PROFILE} element={<ProfilePage/>}/>
       <Route path={PATH.PACKS} element={<Packs/>}/>
       <Route path={PATH.ERROR404} element={<Error404/>}/>

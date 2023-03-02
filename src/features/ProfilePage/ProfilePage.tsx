@@ -3,7 +3,7 @@ import React from 'react';
 import {useAppSelector} from '../../utils/hooks';
 import {Navigate} from 'react-router-dom';
 import {Profile} from './Profile/Profile';
-import {BackPage} from '../../components/common/BackPage/BackPage';
+import {BackPage} from '../../common/components/common/BackPage/BackPage';
 
 export const ProfilePage = () => {
   const isLogin = useAppSelector(state => state.login.isLogin)

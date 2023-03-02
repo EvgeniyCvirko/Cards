@@ -1,5 +1,6 @@
 import axios from 'axios'
-import {ChangeProfileDataType, ResponseUser} from './types';
+import {ChangeProfileDataType} from './DataTypes';
+import {ResponseUser} from './ResponceTypes';
 
 export const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',

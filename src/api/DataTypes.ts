@@ -23,14 +23,24 @@ export type ChangeProfileDataType = {
   avatar: string,
 }
 export type PacksParamType = {
-  packName?:string,
-  min?:number,
+  packName?: string,
+  min?: number,
   max?: number,
   sortPacks?: sortPacks,
   page?: number,
-  pageCount?:number,
+  pageCount?: number,
   user_id?: string,
   block?: boolean,
+}
+export type CardsParamType = {
+  cardAnswer?: string,
+  cardQuestion?: string,
+  max?: number,
+  min?: number,
+  sortPacks?: sortPacks,
+  page?: number,
+  pageCount?: number,
+  cardsPack_id: string,
 }
 
 export type AddPacksType = {
@@ -38,6 +48,9 @@ export type AddPacksType = {
   deckCover?: string
   private?: boolean
 }
+export type UpdatePacksType = {
+  _id: string
+} & AddPacksType
 
 export type CardPackType = {
   _id: string,
@@ -56,3 +69,16 @@ export type CardPackType = {
   updated: string,
   __v: number,
 }
+
+export type CardDataType = {
+  question?: string;
+  answer?: string;
+  grade?: number,
+  shots?: number,
+  answerImg?: string;
+  answerVideo?: string;
+  questionImg?: string;
+  questionVideo?: string;
+}
+export type CreateCardDataType = { cardsPack_id: string } & CardDataType;
+export type UpdateCardDataType = { _id: string } & CardDataType;

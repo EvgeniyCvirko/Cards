@@ -1,22 +1,22 @@
 import React from 'react';
-import {Table} from 'antd';
+import {Rate, Table} from 'antd';
 import type {ColumnsType} from 'antd/es/table';
 import './DataTable.css'
 import {CardType} from '../../../../api/ResponceTypes';
+import {ActionsCards} from '../../Actions/ActionsCards';
 
 interface DataType {
   key: number;
   question: string;
   answer: string;
   updated: string;
-  grade: number;
 }
 
 type DataTableType = {
   data: CardType[]
+  ownPack?: boolean
 }
-export const DataTableCards = (props: DataTableType) => {
-
+export const DataTableCards: React.FC<DataTableType> = ({data, ownPack}) => {
   const columns: ColumnsType<DataType> = [
     {
       title: 'Question',
@@ -27,25 +27,34 @@ export const DataTableCards = (props: DataTableType) => {
       title: 'Answer',
       dataIndex: 'answer',
       className: 'Answer',
-
     },
     {
       title: 'Last Updated',
       dataIndex: 'updated',
+      className: 'Updated',
     },
+
     {
       title: 'Grade',
-      dataIndex: 'grade',
+      dataIndex: 'action',
+      className: 'Grade',
     },
   ];
-  const dataSource = props.data.map((e, i) => {
+  const dataSource = data.map((e, i) => {
     let date = new Date(e.updated).toLocaleDateString('ru')
     return {
       key: i,
       question: e.question,
       answer: e.answer,
       updated: date,
-      grade: e.grade,
+      action:
+        ownPack ? < >
+            <Rate value={e.grade}/>
+            < ActionsCards data={e}/>
+          </> :
+          <>
+            <Rate value={e.grade}/>
+          </>,
     }
   })
 

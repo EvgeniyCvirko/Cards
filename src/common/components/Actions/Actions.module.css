@@ -4,7 +4,12 @@
     justify-content: space-between;
     align-items: center;
 }
-
 .notActive{
     opacity: 0.5;
+}
+.actionsCards{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

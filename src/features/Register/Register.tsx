@@ -6,11 +6,11 @@ import {useAppDispatch} from '../../utils/hooks';
 import {NavLink} from 'react-router-dom';
 import {setRegister} from './RegisterThunk';
 import {PATH} from '../../routing/Pages';
-import {ButtonForm} from '../../components/FormItem/ButtonForm';
-import {InputForm} from '../../components/FormItem/InputForm';
-import {PasswordForm} from '../../components/FormItem/PasswordForm';
 import cs from '../../routing/Pages.module.css';
 import {RegisterDataType} from '../../api/DataTypes';
+import {InputForm} from '../../common/components/FormItem/InputForm';
+import {ButtonForm} from '../../common/components/FormItem/ButtonForm';
+import {PasswordForm} from '../../common/components/FormItem/PasswordForm';
 
 export const Register = () => {
   const dispatch = useAppDispatch()

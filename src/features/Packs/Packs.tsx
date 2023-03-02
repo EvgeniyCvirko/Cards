@@ -1,10 +1,9 @@
 import {Layout, Radio, RadioChangeEvent} from 'antd';
 import {FilterOutlined} from '@ant-design/icons'
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import './Packs.module.css'
 import s from './Packs.module.css'
 import {PacksHead} from '../../common/components/common/PacksHead/PacksHead';
-import {DataTable} from '../../common/components/common/DataTable/DataTable';
 import {OwnSlider} from '../../common/components/common/OwnSlider/OwnSlider';
 import {SubTitle} from '../../common/components/common/SubTitle/SubTitle';
 import {Search} from '../../common/components/common/Search/Search';
@@ -17,6 +16,7 @@ import {setOpenCardPack} from '../Modal/ModalReducer';
 import {title} from '../../common/enums/Title';
 import {Navigate, useSearchParams} from 'react-router-dom';
 import {getActualUrlPacksParam} from '../../utils/getActualParam';
+import { DataTablePacks } from '../../common/components/common/DataTable/DataTablePacks';
 
 export const Packs = () => {
   const dispatch = useAppDispatch()
@@ -27,11 +27,11 @@ export const Packs = () => {
   let [identity, setIdentity] = useState<string>('All')
   const [searchParams, setSearchParams] = useSearchParams();
   profile._id === searchParams.get('user_id') ? identity = 'My' : identity = 'All'
-  const stateParams = getActualUrlPacksParam(searchParams)
+  const stateParams = useMemo(()=>getActualUrlPacksParam(searchParams),[searchParams])
 
   const addPack = () => {
     dispatch(setOpenCardPack({
-      state: {title: title.addTitleCardPack, open: true}
+      state: {isPack: true, title: title.addTitleCardPack, open: true}
     }))
   }
   const changeRadioValue = (e: RadioChangeEvent) => {
@@ -50,11 +50,11 @@ export const Packs = () => {
 
   useEffect(() => {
     dispatch(setPacksParam(stateParams))
-  }, [stateParams.user_id, stateParams.page, stateParams.pageCount])
+  }, [stateParams])
 
   useEffect(() => {
     dispatch(getPacks(stateParams))
-  }, [packsParam.pageCount, packsParam.page, packsParam.user_id])
+  }, [stateParams])
 
   if (!isLogin) {
     return <Navigate to="/login"/>
@@ -89,7 +89,7 @@ export const Packs = () => {
           <FilterOutlined className={s.filter}/>
         </div>
         <div className={s.table}>
-          <DataTable data={packs.cardPacks}/>
+          <DataTablePacks data={packs.cardPacks} />
         </div>
         <PaginationComponent total={packs.cardPacksTotalCount}/>
       </Layout.Content>

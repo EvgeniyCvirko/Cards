@@ -5,5 +5,15 @@
 .Cards {
     max-width: 100px;
 }
+.Question {
+}
+.Answer {
+}
+.Update {
+}
+.Grade{
+    display: flex;
+}
+
 
 

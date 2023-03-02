@@ -4,24 +4,36 @@ import {Modal} from 'antd';
 import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {deleteCardPack} from '../../Packs/PackThunk/PackThunk';
 import {setOpenCardPack} from '../ModalReducer';
+import {title} from '../../../common/enums/Title';
+import {createCard, deleteCard} from '../../Card/CardsReducer';
 
 type PackModalPropsType = {
   open: boolean,
-  title: string,
-  isDoing: string,
+  titleModal: string,
 }
 
-export const DeletePackModal: React.FC<PackModalPropsType> = ({open, title, isDoing}) => {
+export const DeletePackModal: React.FC<PackModalPropsType> = ({open, titleModal}) => {
   const dispatch = useAppDispatch()
   const _id = useAppSelector(state => state.modal._id)
-  const namePack = useAppSelector(state => state.modal.namePack)
+  const name = useAppSelector(state => state.modal.name)
+  const cardsPack_id = useAppSelector(state => state.cardsParam.cardsPack_id)
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
 
   const handleOk = async () => {
     setLoading(true)
-    if (_id) {
-      const result = await dispatch(deleteCardPack(_id))
+    let result
+    if (titleModal === title.deleteTitleCard) {
+      if (_id) {
+        result = await dispatch(deleteCard(_id))
+        if (result.meta.requestStatus) {
+          setLoading(false)
+          handleCancel()
+        }
+      }
+    } else if (_id) {
+      debugger
+      result = await dispatch(deleteCardPack(_id))
       if (result.meta.requestStatus) {
         setLoading(false)
         handleCancel()
@@ -40,16 +52,16 @@ export const DeletePackModal: React.FC<PackModalPropsType> = ({open, title, isDo
 
   return <div>
     <Modal className={s.modal}
-           title={title}
+           title={titleModal}
            open={open}
            onOk={handleOk}
            confirmLoading={loading}
            onCancel={handleCancel}
-           okText={isDoing}
+           okText='Delete'
            okType={'danger'}
     >
       <div className={s.text}>
-        Do you really want to remove <span>{namePack}</span>?
+        Do you really want to remove <span>{name}</span>?
         All cards will be deleted.
       </div>
     </Modal>

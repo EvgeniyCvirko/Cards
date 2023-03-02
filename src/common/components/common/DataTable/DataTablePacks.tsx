@@ -1,9 +1,12 @@
 import React from 'react';
 import {Table} from 'antd';
-import type { ColumnsType } from 'antd/es/table';
+import type {ColumnsType} from 'antd/es/table';
 import {CardPackType} from '../../../../api/DataTypes';
-import {Actions} from '../../Actions/Actions';
+import {ActionsPacks} from '../../Actions/ActionsPacks';
 import './DataTable.css'
+import {NavLink} from 'react-router-dom';
+import {PATH} from '../../../../routing/Pages';
+import {useAppSelector} from '../../../../utils/hooks';
 
 interface DataType {
   key: number;
@@ -15,14 +18,21 @@ interface DataType {
 
 type DataTableType = {
   data: CardPackType[]
+  own?: boolean
 }
-export const DataTable = (props: DataTableType) => {
+export const DataTablePacks: React.FC<DataTableType> = ({data, own}) => {
+  const myId = useAppSelector(state => state.profile.user._id)
+
   const columns: ColumnsType<DataType> = [
     {
       title: 'Name',
       dataIndex: 'title',
-      width:100,
       className: 'Name',
+      render: (name) => {
+        let id
+        data.forEach(el => el.name === name ? id = el._id : null)
+        return <NavLink to={`${PATH.CARD}?cardsPack_id=${id}`}>{name}</NavLink>
+      }
     },
     {
       title: 'Cards',
@@ -42,15 +52,16 @@ export const DataTable = (props: DataTableType) => {
       dataIndex: 'action',
     },
   ];
-  const dataSource = props.data.map((e, i) => {
+  const dataSource = data.map((e, i) => {
     let date = new Date(e.updated).toLocaleDateString('ru')
+    const ownPack = myId === e.user_id
     return {
       key: i,
       title: e.name,
       cardPacksTotalCount: e.cardsCount,
       updated: date,
       name: e.user_name,
-      action: <Actions packs={e}/>
+      action: <ActionsPacks own={ownPack} data={e}/>
     }
   })
 
