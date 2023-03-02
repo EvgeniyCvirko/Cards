@@ -3,11 +3,12 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 export const slice = createSlice({
   name: 'modal',
   initialState: {
-    namePack: '',
+    name: '',
     _id: undefined,
     title:'',
     open: false,
     openDelete: false,
+    isPack:true,
   } as InitialStateType,
   reducers: {
     setOpenCardPack(state, action: PayloadAction<{ state: InitialStateType }>) {
@@ -22,8 +23,9 @@ export const {setOpenCardPack} = slice.actions
 //types
 export type InitialStateType = {
   _id?: string,
-  namePack?: string,
+  name?: string,
   title: string,
   open?: boolean,
   openDelete?: boolean,
+  isPack?: boolean,
 }
