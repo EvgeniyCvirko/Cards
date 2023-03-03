@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Pagination} from 'antd';
 import s from './PaginationComponent.module.css'
-import {startPageCount} from '../../../constants/projectConstant';
+import {startPage, startPageCount} from '../../../constants/projectConstant';
 import {useSearchParams} from 'react-router-dom';
 
 type PaginationComponentType = {
@@ -10,13 +10,10 @@ type PaginationComponentType = {
 
 export const PaginationComponent = (props: PaginationComponentType) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [pageCount, setPageCount] = useState<number>(Number(searchParams.get('pageCount')) || startPageCount)
-  const [page, setPage] = useState<number>(Number(searchParams.get('page')))
-
+  const page = (Number(searchParams.get('page')) | startPage)
+  const pageCount = Number(searchParams.get('pageCount')) | startPageCount
   const changePageCount = (page: number, pageCount: number) => {
-  setPage(page)
-    setPageCount(pageCount)
-    const queryParams: { pageCount?: string, page?: string } = {}
+  const queryParams: { pageCount?: string, page?: string } = {}
     queryParams.pageCount = String(pageCount)
     queryParams.page = String(page)
     setSearchParams({
