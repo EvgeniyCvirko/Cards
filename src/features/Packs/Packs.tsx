@@ -16,7 +16,7 @@ import {setOpenCardPack} from '../Modal/ModalReducer';
 import {title} from '../../common/enums/Title';
 import {Navigate, useSearchParams} from 'react-router-dom';
 import {getActualUrlPacksParam} from '../../utils/getActualParam';
-import { DataTablePacks } from '../../common/components/common/DataTable/DataTablePacks';
+import {DataTablePacks} from '../../common/components/common/DataTable/DataTablePacks';
 
 export const Packs = () => {
   const dispatch = useAppDispatch()
@@ -27,7 +27,7 @@ export const Packs = () => {
   let [identity, setIdentity] = useState<string>('All')
   const [searchParams, setSearchParams] = useSearchParams();
   profile._id === searchParams.get('user_id') ? identity = 'My' : identity = 'All'
-  const stateParams = useMemo(()=>getActualUrlPacksParam(searchParams),[searchParams])
+  const stateParams = useMemo(() => getActualUrlPacksParam(searchParams), [searchParams])
 
   const addPack = () => {
     dispatch(setOpenCardPack({
@@ -73,7 +73,7 @@ export const Packs = () => {
         <div className={s.main}>
           <div className={s.search}>
             <SubTitle title="Search"/>
-            <Search/>
+            <Search search='packName'/>
           </div>
           <div className={s.radioGroup}>
             <SubTitle title="Show packs cards"/>
@@ -89,7 +89,7 @@ export const Packs = () => {
           <FilterOutlined className={s.filter}/>
         </div>
         <div className={s.table}>
-          <DataTablePacks data={packs.cardPacks} />
+          <DataTablePacks data={packs.cardPacks}/>
         </div>
         <PaginationComponent total={packs.cardPacksTotalCount}/>
       </Layout.Content>

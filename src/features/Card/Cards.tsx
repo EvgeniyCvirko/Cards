@@ -52,7 +52,7 @@ export const Cards = () => {
               <div className={s.main}>
                 <div className={s.search}>
                   <SubTitle title="Search"/>
-                  <Search/>
+                  <Search search='cardQuestion'/>
                 </div>
               </div>
               <div className={s.table}>
@@ -80,7 +80,7 @@ export const Cards = () => {
               <div className={s.main}>
                 <div className={s.search}>
                   <SubTitle title="Search"/>
-                  <Search/>
+                 <Search search='cardQuestion'/>
                 </div>
               </div>
               <div className={s.table}>
