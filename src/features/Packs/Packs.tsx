@@ -1,4 +1,4 @@
-import {Layout, Radio, RadioChangeEvent} from 'antd';
+import {Button, Layout, Radio, RadioChangeEvent} from 'antd';
 import {FilterOutlined} from '@ant-design/icons'
 import React, {useEffect, useMemo, useState} from 'react';
 import './Packs.module.css'
@@ -17,6 +17,7 @@ import {title} from '../../common/enums/Title';
 import {Navigate, useSearchParams} from 'react-router-dom';
 import {getActualUrlPacksParam} from '../../utils/getActualParam';
 import {DataTablePacks} from '../../common/components/common/DataTable/DataTablePacks';
+import {clearURLParams} from '../../utils/ClearUrlParam';
 
 export const Packs = () => {
   const dispatch = useAppDispatch()
@@ -34,6 +35,11 @@ export const Packs = () => {
       state: {isPack: true, title: title.addTitleCardPack, open: true}
     }))
   }
+  const deletePackParam = () => {
+    clearURLParams(Object.keys(stateParams), searchParams)
+    setSearchParams({...Object.fromEntries(searchParams)})
+  }
+
   const changeRadioValue = (e: RadioChangeEvent) => {
     const queryParams: { user_id?: string } = {}
     if (e.target.value === 'My') {
@@ -73,7 +79,7 @@ export const Packs = () => {
         <div className={s.main}>
           <div className={s.search}>
             <SubTitle title="Search"/>
-            <Search search='packName'/>
+            <Search search="packName"/>
           </div>
           <div className={s.radioGroup}>
             <SubTitle title="Show packs cards"/>
@@ -86,7 +92,7 @@ export const Packs = () => {
             <SubTitle title="Number of cards"/>
             <OwnSlider/>
           </div>
-          <FilterOutlined className={s.filter}/>
+          <Button type="dashed" shape="circle" onClick={deletePackParam} size='large' icon={<FilterOutlined />} />
         </div>
         <div className={s.table}>
           <DataTablePacks data={packs.cardPacks}/>
