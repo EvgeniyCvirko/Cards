@@ -10,7 +10,7 @@ export const OwnSlider = () => {
   const maxPage = useAppSelector(state => state.packs.maxCardsCount)
   const minParam = Number(searchParams.get('min'))
   const maxParam = Number(searchParams.get('max'))
-  let min:number, max:number
+  let min: number, max: number
   minParam ? min = minParam : min = minPage
   maxParam ? max = maxParam : max = maxPage
   const [minValue, setMinValue] = useState(min)
