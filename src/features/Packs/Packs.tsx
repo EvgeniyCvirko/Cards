@@ -29,7 +29,6 @@ export const Packs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   profile._id === searchParams.get('user_id') ? identity = 'My' : identity = 'All'
   const stateParams = useMemo(() => getActualUrlPacksParam(searchParams), [searchParams])
-
   const addPack = () => {
     dispatch(setOpenCardPack({
       state: {isPack: true, title: title.addTitleCardPack, open: true}
@@ -47,6 +46,7 @@ export const Packs = () => {
     } else {
       searchParams.delete('user_id')
     }
+    clearURLParams(['max','min','page'], searchParams)
     setSearchParams({
       ...Object.fromEntries(searchParams),
       ...queryParams,
