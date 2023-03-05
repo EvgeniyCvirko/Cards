@@ -4,6 +4,9 @@ import type {ColumnsType} from 'antd/es/table';
 import './DataTable.css'
 import {CardType} from '../../../../api/ResponceTypes';
 import {ActionsCards} from '../../Actions/ActionsCards';
+import {SortComponent} from '../SortCompomemt/SortComponent';
+import {useSearchParams} from 'react-router-dom';
+import {sortPacks} from '../../../enums/SortPacks';
 
 interface DataType {
   key: number;
@@ -17,6 +20,17 @@ type DataTableType = {
   ownPack?: boolean
 }
 export const DataTableCards: React.FC<DataTableType> = ({data, ownPack}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  let up
+  (searchParams.get('sortCards') && searchParams.get('sortCards') === sortPacks.ASC_UPDATE) ? up = true : up = false
+  const changeSort = (isUp: boolean) => {
+    const queryParam: { sortCards?: string } = {}
+    isUp ? queryParam.sortCards = sortPacks.ASC_UPDATE : queryParam.sortCards = sortPacks.DESC_UPDATE
+    setSearchParams({
+      ...Object.fromEntries(searchParams),
+      ...queryParam
+    })
+  }
   const columns: ColumnsType<DataType> = [
     {
       title: 'Question',
@@ -29,7 +43,7 @@ export const DataTableCards: React.FC<DataTableType> = ({data, ownPack}) => {
       className: 'Answer',
     },
     {
-      title: 'Last Updated',
+      title: <SortComponent callback={changeSort} up={up}/>,
       dataIndex: 'updated',
       className: 'Updated',
     },

@@ -20,7 +20,7 @@ export const getActualUrlCardsParam = (searchParams: URLSearchParams): CardsPara
     cardAnswer: searchParams.get('packName') || undefined,
     min: Number(searchParams.get('min')) || undefined,
     max: Number(searchParams.get('max')) || undefined,
-    sortPacks: searchParams.get('sortPacks') as sortPacks || undefined,
+    sortCards: searchParams.get('sortCards') as sortPacks || undefined,
     page: Number(searchParams.get('page')) || undefined,
     pageCount: Number(searchParams.get('pageCount')) || startPageCount,
     cardsPack_id: String(searchParams.get('cardsPack_id')),

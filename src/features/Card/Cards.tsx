@@ -19,7 +19,6 @@ import {setOpenCardPack} from '../Modal/ModalReducer';
 
 export const Cards = () => {
   const dispatch = useAppDispatch()
-  const cardsParams = useAppSelector(state => state.cardsParam)
   const cards = useAppSelector(state => state.cards)
   const myId = useAppSelector(state => state.profile.user._id)
   const packUserId = useAppSelector(state => state.cards.packUserId)
@@ -33,7 +32,7 @@ export const Cards = () => {
   }
   useEffect(() => {
     dispatch(setCardsParam(stateParamsCard))
-  }, [stateParamsCard])
+  }, [dispatch,stateParamsCard])
 
   useEffect(() => {
     dispatch(getCards(stateParamsCard))
@@ -52,7 +51,7 @@ export const Cards = () => {
               <div className={s.main}>
                 <div className={s.search}>
                   <SubTitle title="Search"/>
-                  <Search search='cardQuestion'/>
+                  <Search search="cardQuestion"/>
                 </div>
               </div>
               <div className={s.table}>
@@ -80,7 +79,7 @@ export const Cards = () => {
               <div className={s.main}>
                 <div className={s.search}>
                   <SubTitle title="Search"/>
-                 <Search search='cardQuestion'/>
+                  <Search search="cardQuestion"/>
                 </div>
               </div>
               <div className={s.table}>

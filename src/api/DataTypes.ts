@@ -37,12 +37,11 @@ export type CardsParamType = {
   cardQuestion?: string,
   max?: number,
   min?: number,
-  sortPacks?: sortPacks,
+  sortCards?: sortPacks,
   page?: number,
   pageCount?: number,
   cardsPack_id: string,
 }
-
 export type AddPacksType = {
   name: string
   deckCover?: string
