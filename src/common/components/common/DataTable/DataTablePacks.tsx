@@ -4,9 +4,11 @@ import type {ColumnsType} from 'antd/es/table';
 import {CardPackType} from '../../../../api/DataTypes';
 import {ActionsPacks} from '../../Actions/ActionsPacks';
 import './DataTable.css'
-import {NavLink} from 'react-router-dom';
+import {NavLink, useSearchParams} from 'react-router-dom';
 import {PATH} from '../../../../routing/Pages';
 import {useAppSelector} from '../../../../utils/hooks';
+import {SortComponent} from '../SortCompomemt/SortComponent';
+import {sortPacks} from '../../../enums/SortPacks';
 
 interface DataType {
   key: number;
@@ -18,10 +20,20 @@ interface DataType {
 
 type DataTableType = {
   data: CardPackType[]
-  own?: boolean
 }
-export const DataTablePacks: React.FC<DataTableType> = ({data, own}) => {
+export const DataTablePacks: React.FC<DataTableType> = ({data}) => {
   const myId = useAppSelector(state => state.profile.user._id)
+  const [searchParams, setSearchParams] = useSearchParams();
+  let up
+  (searchParams.get('sortPacks') && searchParams.get('sortPacks') === sortPacks.ASC_UPDATE) ? up = true : up = false
+  const changeSort = (isUp: boolean) => {
+    const queryParam: { sortPacks?: string } = {}
+    isUp ? queryParam.sortPacks = sortPacks.ASC_UPDATE : queryParam.sortPacks = sortPacks.DESC_UPDATE
+    setSearchParams({
+      ...Object.fromEntries(searchParams),
+      ...queryParam
+    })
+  }
 
   const columns: ColumnsType<DataType> = [
     {
@@ -41,7 +53,7 @@ export const DataTablePacks: React.FC<DataTableType> = ({data, own}) => {
 
     },
     {
-      title: 'Last Updated',
+      title: <SortComponent callback={changeSort} up={up}/>,
       dataIndex: 'updated',
     },
     {

@@ -24,7 +24,6 @@ export const Packs = () => {
   const isLogin = useAppSelector(state => state.login.isLogin)
   const packs = useAppSelector(state => state.packs)
   const profile = useAppSelector(state => state.profile.user)
-  const packsParam = useAppSelector(state => state.packsParam)
   let [identity, setIdentity] = useState<string>('All')
   const [searchParams, setSearchParams] = useSearchParams();
   profile._id === searchParams.get('user_id') ? identity = 'My' : identity = 'All'
@@ -46,7 +45,7 @@ export const Packs = () => {
     } else {
       searchParams.delete('user_id')
     }
-    clearURLParams(['max','min','page'], searchParams)
+    clearURLParams(['max', 'min', 'page'], searchParams)
     setSearchParams({
       ...Object.fromEntries(searchParams),
       ...queryParams,
@@ -56,11 +55,11 @@ export const Packs = () => {
 
   useEffect(() => {
     dispatch(setPacksParam(stateParams))
-  }, [stateParams])
+  }, [dispatch,stateParams])
 
   useEffect(() => {
     dispatch(getPacks(stateParams))
-  }, [stateParams])
+  }, [dispatch,stateParams])
 
   if (!isLogin) {
     return <Navigate to="/login"/>
@@ -92,7 +91,7 @@ export const Packs = () => {
             <SubTitle title="Number of cards"/>
             <OwnSlider/>
           </div>
-          <Button type="dashed" shape="circle" onClick={deletePackParam} size='large' icon={<FilterOutlined />} />
+          <Button type="dashed" shape="circle" onClick={deletePackParam} size="large" icon={<FilterOutlined/>}/>
         </div>
         <div className={s.table}>
           <DataTablePacks data={packs.cardPacks}/>
