@@ -1,11 +1,11 @@
-import s from './Button.module.css';
+import s from './MyButton.module.css';
 import React from 'react';
 
 type ButtonPropsType = {
   name: string;
   callback: () => void
 }
-export const Button = (props: ButtonPropsType) => {
+export const MyButton = (props: ButtonPropsType) => {
   const clickHandler = () => {
     props.callback()
   }

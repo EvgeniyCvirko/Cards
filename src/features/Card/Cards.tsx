@@ -11,7 +11,7 @@ import {setCardsParam} from './CardsParamReducer';
 import {getCards} from './CardsReducer';
 import {DataTableCards} from '../../common/components/common/DataTable/DataTableCards';
 import {BackPage} from '../../common/components/common/BackPage/BackPage';
-import {Button} from '../../common/components/common/Button/Button';
+import {MyButton} from '../../common/components/common/Button/MyButton';
 import {PaginationComponent} from '../../common/components/common/PaginationComponent/PaginationComponent';
 import {BasicModal} from '../Modal/BasicModal';
 import {title} from '../../common/enums/Title';
@@ -65,7 +65,7 @@ export const Cards = () => {
               <div className={s.emptyHead}>
                 <div className={s.title}>{cards.packName}</div>
                 <div className={s.text}>This pack is empty. Click add new card to fill this pack</div>
-                <Button name="Add new card" callback={addNewCard}/>
+                <MyButton name="Add new card" callback={addNewCard}/>
               </div>
             </>
         )

@@ -2,7 +2,7 @@ import s from './EditableSpan.module.css';
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Input} from 'antd';
 import {EditOutlined} from '@ant-design/icons';
-import {Button} from '../Button/Button';
+import {MyButton} from '../Button/MyButton';
 
 type EditableSpanPropsType = {
   value: string;
@@ -47,7 +47,7 @@ export const EditableSpan = (props: EditableSpanPropsType) => {
                 onBlur={offEditMode}
                 onKeyPress={onPressHandler}
       />
-      <Button name="save" callback={onSaveHandler}/>
+      <MyButton name="save" callback={onSaveHandler}/>
       </>
 
     }

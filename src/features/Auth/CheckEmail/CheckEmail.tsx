@@ -6,7 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {PATH} from '../../../routing/Pages';
 import {setAppStatus} from '../../../app/AppReducer';
 import cs from '../../../routing/Pages.module.css';
-import {Button} from '../../../common/components/common/Button/Button';
+import {MyButton} from '../../../common/components/common/Button/MyButton';
 
 export const CheckEmail = () => {
   const email = useAppSelector(state => state.forgotPassword.email)
@@ -30,7 +30,7 @@ export const CheckEmail = () => {
         <div className={s.text}>
           We’ve sent an email with instructions to <span>{email}</span>
         </div>
-        <Button name="Back to login" callback={backLoginHandler}/>
+        <MyButton name="Back to login" callback={backLoginHandler}/>
       </div>
     </div>
   );

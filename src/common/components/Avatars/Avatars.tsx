@@ -2,7 +2,7 @@ import React from 'react'
 import icon from '../assets/profile/iconPhoto.svg'
 import s from './Avatars.module.css'
 import {UserOutlined} from '@ant-design/icons';
-import { Avatar } from 'antd';
+import {Avatar} from 'antd';
 
 type AvatarsPropsType = {
   mode?: string
@@ -12,9 +12,9 @@ type AvatarsPropsType = {
 }
 export const Avatars = (props: AvatarsPropsType) => {
   let width = props.width
-if (!props.width ) {
-  width = 74
-}
+  if (!props.width) {
+    width = 74
+  }
   return (
     <>
       <div className={s.avatar}>
