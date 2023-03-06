@@ -5,7 +5,7 @@ import {useAppDispatch, useAppSelector} from '../../../utils/hooks';
 import {deleteCardPack} from '../../Packs/PackThunk/PackThunk';
 import {setOpenCardPack} from '../ModalReducer';
 import {title} from '../../../common/enums/Title';
-import {createCard, deleteCard} from '../../Card/CardsReducer';
+import {deleteCard} from '../../Card/CardsReducer';
 
 type PackModalPropsType = {
   open: boolean,
@@ -16,7 +16,6 @@ export const DeletePackModal: React.FC<PackModalPropsType> = ({open, titleModal}
   const dispatch = useAppDispatch()
   const _id = useAppSelector(state => state.modal._id)
   const name = useAppSelector(state => state.modal.name)
-  const cardsPack_id = useAppSelector(state => state.cardsParam.cardsPack_id)
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
 
@@ -32,7 +31,6 @@ export const DeletePackModal: React.FC<PackModalPropsType> = ({open, titleModal}
         }
       }
     } else if (_id) {
-      debugger
       result = await dispatch(deleteCardPack(_id))
       if (result.meta.requestStatus) {
         setLoading(false)
