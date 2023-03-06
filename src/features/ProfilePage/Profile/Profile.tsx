@@ -6,7 +6,7 @@ import {setLogout} from '../../Auth/LoginReducer';
 import {changeProfile} from '../ProfileReducer';
 import {EditableSpan} from '../../../common/components/common/EditableSpan/EditableSpan';
 import {Avatars} from '../../../common/components/Avatars/Avatars';
-import {Button} from '../../../common/components/common/Button/Button';
+import {MyButton} from '../../../common/components/common/Button/MyButton';
 
 export const Profile = () => {
   const avatar = useAppSelector(state => state.profile.user.avatar)
@@ -33,7 +33,7 @@ export const Profile = () => {
       <EditableSpan value={name} callback={changeNameHandler}/>
       <p className={s.email}>{email}</p>
       <div className={s.button}>
-        <Button name="LogOut" callback={logOutHandler}/>
+        <MyButton name="LogOut" callback={logOutHandler}/>
       </div>
     </div>
   )

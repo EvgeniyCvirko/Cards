@@ -1,0 +1,18 @@
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.item {
+    flex: 1 1 auto;
+    margin: 0 5px;
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+
