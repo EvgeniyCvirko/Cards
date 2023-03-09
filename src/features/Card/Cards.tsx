@@ -21,8 +21,7 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards)
   const myId = useAppSelector(state => state.profile.user._id)
-  const packUserId = useAppSelector(state => state.cards.packUserId)
-  const ownPack = myId === packUserId
+  const ownPack = myId === cards.packUserId
   const [searchParams, setSearchParams] = useSearchParams()
   const stateParamsCard = useMemo(() => getActualUrlCardsParam(searchParams), [searchParams])
 
@@ -45,7 +44,7 @@ export const Cards = () => {
         (cards.cards.length !== 0 ?
             <>
               <div className={s.head}>
-                <PacksHead title={cards.packName} name="Add new card" callback={addNewCard}/>
+                <PacksHead title={cards.packName} name="Add new card" callback={addNewCard} menu />
               </div>
               <BasicModal/>
               <div className={s.main}>
@@ -74,7 +73,7 @@ export const Cards = () => {
             <>
               <div className={s.head}>
                 <PacksHead title={cards.packName} name="Learn to pack" callback={() => {
-                }}/>
+                }} menu/>
               </div>
               <div className={s.main}>
                 <div className={s.search}>

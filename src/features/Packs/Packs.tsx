@@ -24,6 +24,7 @@ export const Packs = () => {
   const isLogin = useAppSelector(state => state.login.isLogin)
   const packs = useAppSelector(state => state.packs)
   const profile = useAppSelector(state => state.profile.user)
+  const packsParam = useAppSelector(state => state.packsParam)
   let [identity, setIdentity] = useState<string>('All')
   const [searchParams, setSearchParams] = useSearchParams();
   profile._id === searchParams.get('user_id') ? identity = 'My' : identity = 'All'
@@ -57,10 +58,9 @@ export const Packs = () => {
     dispatch(setPacksParam(stateParams))
   }, [dispatch,stateParams])
 
-  useEffect(() => {
-    dispatch(getPacks(stateParams))
-  }, [dispatch,stateParams])
-
+  useEffect(()=>{
+    dispatch(getPacks(packsParam))
+  },[dispatch,stateParams])
   if (!isLogin) {
     return <Navigate to="/login"/>
   }
