@@ -81,3 +81,7 @@ export type CardDataType = {
 }
 export type CreateCardDataType = { cardsPack_id: string } & CardDataType;
 export type UpdateCardDataType = { _id: string } & CardDataType;
+export type gradeCardDataType = {
+  grade: number,
+  card_id: string,
+}

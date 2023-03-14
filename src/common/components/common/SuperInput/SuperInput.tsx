@@ -4,10 +4,11 @@ import {Radio, RadioChangeEvent, Space} from 'antd';
 
 type SuperInputPropsType = {
   options: {id:number, value: number, name: string} [],
-  callback: (rate:number) => void
+  callback: (rate:number) => void,
+  grade: number
 }
-export const SuperInput: React.FC<SuperInputPropsType> = ({options,callback}) => {
-  const [value, setValue] = useState<number>(1)
+export const SuperInput: React.FC<SuperInputPropsType> = ({options,callback,grade}) => {
+  const [value, setValue] = useState<number>(grade)
   const onChange = (event: RadioChangeEvent) => {
     setValue(event.target.value);
     callback(event.target.value)

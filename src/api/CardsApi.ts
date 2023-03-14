@@ -1,6 +1,12 @@
 import axios from 'axios'
-import {CardsParamType, CreateCardDataType, UpdateCardDataType} from './DataTypes';
-import {CardResponseType, DeleteCardResponseType, getResponseCards, UpdateCardResponseType} from './ResponceTypes';
+import {CardsParamType, CreateCardDataType, gradeCardDataType, UpdateCardDataType} from './DataTypes';
+import {
+  CardResponseType,
+  DeleteCardResponseType,
+  getResponseCards,
+  gradeCardResponseType,
+  UpdateCardResponseType
+} from './ResponceTypes';
 
 export const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -19,5 +25,8 @@ export const cardsApi = {
   },
   updateCard(card: UpdateCardDataType) {
     return instance.put<DeleteCardResponseType>(`/cards/card`, {card})
+  },
+  gradeCard(payload: gradeCardDataType) {
+    return instance.put<gradeCardResponseType>(`/cards/grade`, payload)
   },
 }

@@ -2,8 +2,8 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {handleAsyncServerNetworkError} from '../../utils/ErrorUtils';
 import {setAppStatus} from '../../app/AppReducer';
 import {successRequest} from '../../utils/SuccessRequest';
-import {CardsParamType, CreateCardDataType, UpdateCardDataType} from '../../api/DataTypes';
-import {CardType, getResponseCards} from '../../api/ResponceTypes';
+import {CardsParamType, CreateCardDataType, gradeCardDataType, UpdateCardDataType} from '../../api/DataTypes';
+import {CardType, getResponseCards, updatedGradeCardResponseType} from '../../api/ResponceTypes';
 import {cardsApi} from '../../api/CardsApi';
 import {AppRootStateType} from '../../app/store';
 
@@ -48,6 +48,16 @@ export const deleteCard = createAsyncThunk('cards/deleteCard', async (id: string
     return handleAsyncServerNetworkError(error, ThunkApi, true)
   }
 })
+export const changeGradeCard = createAsyncThunk<updatedGradeCardResponseType, gradeCardDataType, { rejectValue: { error: string | undefined } }>(
+  'cards/changeGrade', async (param: gradeCardDataType, ThunkApi) => {
+    try {
+      const res = await cardsApi.gradeCard(param)
+
+      return res.data.updatedGrade
+    } catch (error) {
+      return handleAsyncServerNetworkError(error, ThunkApi, true)
+    }
+  })
 //state
 export const slice = createSlice({
   name: 'cards',
@@ -69,11 +79,18 @@ export const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCards.fulfilled, (state, action) => {
-      return {...state, ...action.payload.cards}
-    })
+      return action.payload.cards
+    });
+    builder.addCase(changeGradeCard.fulfilled, (state, action) => {
+
+      state.cards = state.cards.map(card =>
+        card._id === action.payload.card_id ? {...card, grade: action.payload.grade} : card)
+
+    });
   }
 })
 
 export const cardsReducer = slice.reducer
 //actions
+
 //type

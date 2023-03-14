@@ -23,15 +23,15 @@ export type ResponseCardsPack = {
   newCardsPack: CardPackType,
 } & TokenType;
 export type getResponseCards = {
-  cards:Array<CardType>,
+  cards: Array<CardType>,
   cardsTotalCount: number,
   maxGrade: number,
   minGrade: number,
-  packCreated:string,
-  packName:string,
+  packCreated: string,
+  packName: string,
   packPrivate: boolean,
-  packUpdated:string,
-  packUserId:string,
+  packUpdated: string,
+  packUserId: string,
   page: number,
   pageCount: number,
 } & TokenType;
@@ -77,4 +77,19 @@ export type TokenType = {
   token: string,
   tokenDeathTim: number,
 }
+export type updatedGradeCardResponseType = {
+  _id: string
+  cardsPack_id: string
+  card_id: string
+  more_id: string
+  user_id: string
+  grade: number
+  shots: number
+  created: string
+  updated: string
+  __v: number
+}
+export type gradeCardResponseType = {
+  updatedGrade: updatedGradeCardResponseType
+} & TokenType;
 
