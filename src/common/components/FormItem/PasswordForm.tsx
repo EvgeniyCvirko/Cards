@@ -13,6 +13,7 @@ export const PasswordForm = (props: PropsType) => {
     rules={[{required: true, message: 'Please input your Username!',}]}>
     <Input.Password prefix={<LockOutlined/>}
                     type={props.name}
+                    autoComplete='on'
                     placeholder={props.name}/>
   </Form.Item>
 }

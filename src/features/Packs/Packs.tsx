@@ -29,11 +29,12 @@ export const Packs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   profile._id === searchParams.get('user_id') ? identity = 'My' : identity = 'All'
   const stateParams = useMemo(() => getActualUrlPacksParam(searchParams), [searchParams])
-  const addPack = () => {
+
+  const addPack = useCallback(() => {
     dispatch(setOpenCardPack({
       state: {isPack: true, title: title.addTitleCardPack, open: true}
     }))
-  }
+  },[])
   const deletePackParam = () => {
     clearURLParams(Object.keys(stateParams), searchParams)
     setSearchParams({...Object.fromEntries(searchParams)})

@@ -10,7 +10,7 @@ type PacksHeadPropsType = {
   menu?: boolean
 }
 
-export const PacksHead: React.FC<PacksHeadPropsType> = ({name, title, callback, menu}) => {
+export const PacksHead: React.FC<PacksHeadPropsType> = React.memo(({name, title, callback, menu}) => {
   const buttonHandler = () => {
     callback()
   }
@@ -21,4 +21,4 @@ export const PacksHead: React.FC<PacksHeadPropsType> = ({name, title, callback, 
     </div>
     <Button type="primary" onClick={buttonHandler} size="large">{name}</Button>
   </div>
-}
+})
