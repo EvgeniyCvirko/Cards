@@ -29,7 +29,7 @@ export const Pages = () => {
 
   return <>
     <Routes>
-      <Route path={'/'} element={<Navigate to={PATH.PROFILE}/>}/>
+      <Route path={'/'} element={<Navigate to={PATH.PACKS}/>}/>
       <Route path={PATH.LOGIN} element={<Login/>}/>
       <Route path={PATH.REGISTER} element={<Register/>}/>
       <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword/>}/>

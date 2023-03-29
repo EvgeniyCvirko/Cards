@@ -22,11 +22,12 @@ export const PaginationComponent = (props: PaginationComponentType) => {
     })
   }
 
-  return <div className={s.pagination}><Pagination
+  return <div className={s.pagination}>
+    <Pagination
     defaultCurrent={page}
     defaultPageSize={pageCount}
     total={props.total}
     onChange={changePageCount}
-    pageSizeOptions={[5, 11, 25, 100]}
+    pageSizeOptions={[5, 10, 25, 100]}
   /></div>;
 }
