@@ -9,10 +9,9 @@ export const BasicModal = () => {
   const openDelete = useAppSelector(state => state.modal.openDelete)
   const title = useAppSelector(state => state.modal.title)
   const isPack = useAppSelector(state => state.modal.isPack)
-
   return <div>
-    {open && isPack && <PackModal titleModal={title} open={open} /> }
+    {open && isPack && <PackModal titleModal={title} open={open}/>}
     {openDelete && <DeletePackModal open={openDelete} titleModal={title}/>}
-    {open && !isPack && <CardModal titleModal={title} open={open} /> }
+    {open && !isPack && <CardModal titleModal={title} open={open}/>}
   </div>
 }

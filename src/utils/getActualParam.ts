@@ -18,12 +18,12 @@ export const getActualUrlPacksParam = (searchParams: URLSearchParams): PacksPara
 export const getActualUrlCardsParam = (searchParams: URLSearchParams): CardsParamType => {
   return {
     cardAnswer: searchParams.get('packName') || undefined,
+    cardQuestion: searchParams.get('cardQuestion') || undefined,
+    cardsPack_id: String(searchParams.get('cardsPack_id')),
     min: Number(searchParams.get('min')) || undefined,
     max: Number(searchParams.get('max')) || undefined,
     sortCards: searchParams.get('sortCards') as sortPacks || undefined,
     page: Number(searchParams.get('page')) || undefined,
     pageCount: Number(searchParams.get('pageCount')) || startPageCount,
-    cardsPack_id: String(searchParams.get('cardsPack_id')),
-    cardQuestion: searchParams.get('cardQuestion') || undefined,
   }
 }

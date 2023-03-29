@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {PacksParamType} from '../../api/DataTypes';
-import {startPage, startPageCount} from '../../common/constants/projectConstant';
+import {startPageCount} from '../../common/constants/projectConstant';
 
 //state
 export const slice = createSlice({
@@ -10,7 +10,7 @@ export const slice = createSlice({
     min: undefined,
     max: undefined,
     sortPacks: undefined,
-    page: startPage,
+    page: undefined,
     pageCount: startPageCount,
     user_id: undefined,
     block: undefined,

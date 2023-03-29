@@ -1,6 +1,6 @@
 import {Button, Layout, Radio, RadioChangeEvent} from 'antd';
 import {FilterOutlined} from '@ant-design/icons'
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import './Packs.module.css'
 import s from './Packs.module.css'
 import {PacksHead} from '../../common/components/common/PacksHead/PacksHead';
@@ -34,34 +34,34 @@ export const Packs = () => {
     dispatch(setOpenCardPack({
       state: {isPack: true, title: title.addTitleCardPack, open: true}
     }))
-  },[])
+  }, [])
   const deletePackParam = () => {
     clearURLParams(Object.keys(stateParams), searchParams)
     setSearchParams({...Object.fromEntries(searchParams)})
   }
 
   const changeRadioValue = (e: RadioChangeEvent) => {
+    clearURLParams(Object.keys(stateParams), searchParams)
     const queryParams: { user_id?: string } = {}
     if (e.target.value === 'My') {
       queryParams.user_id = profile._id
     } else {
       searchParams.delete('user_id')
     }
-    clearURLParams(['max', 'min', 'page'], searchParams)
+
     setSearchParams({
       ...Object.fromEntries(searchParams),
       ...queryParams,
     })
     setIdentity(e.target.value)
   }
+  useEffect(() => {
+    if (JSON.stringify(packsParam) !== JSON.stringify(stateParams)) dispatch(setPacksParam(stateParams))
+  }, [dispatch, stateParams])
 
   useEffect(() => {
-    dispatch(setPacksParam(stateParams))
-  }, [dispatch,stateParams])
-
-  useEffect(()=>{
-    dispatch(getPacks(packsParam))
-  },[dispatch,stateParams])
+    if (JSON.stringify(packsParam) === JSON.stringify(stateParams)) dispatch(getPacks(packsParam))
+  }, [dispatch, packsParam])
   if (!isLogin) {
     return <Navigate to="/login"/>
   }
