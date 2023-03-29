@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import  {useEffect} from 'react';
 import s from './App.module.css';
 import {Pages} from '../routing/Pages';
 import {setIsInitialized} from './AppReducer';

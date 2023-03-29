@@ -11,53 +11,50 @@ export const OwnSlider = () => {
   const minParam = Number(searchParams.get('min'))
   const maxParam = Number(searchParams.get('max'))
   let min: number, max: number
-  minParam ? min = minParam : min = minPage
-  maxParam ? max = maxParam : max = maxPage
-  const [minValue, setMinValue] = useState(min)
-  const [maxValue, setMaxValue] = useState(max)
+  const [value, setValue] = useState<Array<number>>([
+    minParam ? min = minParam : min = minPage,
+    maxParam ? max = maxParam : max = maxPage
+  ])
 
   const onChange = (value: [number, number]) => {
-    setMinValue(value[0]);
-    setMaxValue(value[1]);
+    setValue(value)
   };
   const onAfterChange = (value: [number, number]) => {
-    setMinValue(value[0]);
-    setMaxValue(value[1]);
+    setValue(value)
     changeSearchSize(value[0], value[1])
   };
-  const changeMinInput = (value: ChangeEvent<HTMLInputElement>) => {
-    setMinValue(+value.currentTarget.value)
-    changeSearchSize(+value.currentTarget.value, maxValue)
+  const changeMinInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue([+e.currentTarget.value, value[1]])
+    changeSearchSize(+e.currentTarget.value, value[1])
   };
-  const changeMaxInput = (value: ChangeEvent<HTMLInputElement>) => {
-    setMaxValue(+value.currentTarget.value)
-    changeSearchSize(minValue, +value.currentTarget.value)
+  const changeMaxInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue([value[0], +e.currentTarget.value])
+    changeSearchSize(value[0], +e.currentTarget.value)
   };
   const changeSearchSize = (minV: number, maxV: number) => {
-    const queryParams: { min?: number, max?: number } = {}
-    minV === minPage ? searchParams.delete('min') : queryParams.min = minV
-    maxV === maxPage ? searchParams.delete('max') : queryParams.max = maxV
-    // @ts-ignore
+    const queryParams: { min?: string, max?: string } = {}
+    minV === minPage ? searchParams.delete('min') : queryParams.min = String(minV)
+    maxV === maxPage ? searchParams.delete('max') : queryParams.max = String(maxV)
     setSearchParams({
       ...Object.fromEntries(searchParams),
       ...queryParams,
     })
   }
+  console.log('render')
   useEffect(() => {
-    setMinValue(min)
-    setMaxValue(max)
+    setValue([min, max])
   }, [min, max])
 
   return <div className={s.slider}>
     <Input style={{width: '45px', marginRight: '5px'}}
            size="small"
-           value={minValue}
+           value={value[0]}
            onChange={changeMinInput}
     />
     <Slider style={{flexBasis: '100%'}}
             range
             step={1}
-            value={[minValue, maxValue]}
+            value={[value[0], value[1]]}
             min={minPage}
             max={maxPage}
             defaultValue={[min, max]}
@@ -66,7 +63,7 @@ export const OwnSlider = () => {
     />
     <Input style={{width: '50px', marginLeft: '5px'}}
            size="small"
-           value={maxValue}
+           value={value[1]}
            onChange={changeMaxInput}
     />
   </div>

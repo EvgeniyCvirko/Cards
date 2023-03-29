@@ -46,10 +46,13 @@ export const Headers = () => {
             </NavLink>
           </div>
           {isLogin ?
-            <div className={s.avatar} onClick={() => setOpen(!open)}>
+            <div className={s.avatar} >
+              <div onClick={() => setOpen(!open)}>
               <Popover content={content} trigger='click' open={open} onOpenChange={handleOpenChange}>
                 <p>{name}</p>
               </Popover>
+              </div>
+              
               <Avatars src={avatar} width={36}/>
             </div>
 

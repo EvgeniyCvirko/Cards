@@ -4,7 +4,7 @@ import s from './Card.module.css'
 import {PacksHead} from '../../common/components/common/PacksHead/PacksHead';
 import {SubTitle} from '../../common/components/common/SubTitle/SubTitle';
 import {Search} from '../../common/components/common/Search/Search';
-import {useSearchParams} from 'react-router-dom';
+import {Navigate, useNavigate, useSearchParams} from 'react-router-dom';
 import {getActualUrlCardsParam} from '../../utils/getActualParam';
 import {useAppDispatch, useAppSelector} from '../../utils/hooks';
 import {setCardsParam} from './CardsParamReducer';
@@ -16,26 +16,39 @@ import {PaginationComponent} from '../../common/components/common/PaginationComp
 import {BasicModal} from '../Modal/BasicModal';
 import {title} from '../../common/enums/Title';
 import {setOpenCardPack} from '../Modal/ModalReducer';
+import {PATH} from '../../routing/Pages';
 
 export const Cards = () => {
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards)
+  const isLogin = useAppSelector(state => state.login.isLogin)
+  const cardsParams = useAppSelector(state => state.cardsParam)
   const myId = useAppSelector(state => state.profile.user._id)
   const ownPack = myId === cards.packUserId
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
+  const param = getActualUrlCardsParam(searchParams)
+  const navigate = useNavigate()
   const stateParamsCard = useMemo(() => getActualUrlCardsParam(searchParams), [searchParams])
-
   const addNewCard = () => {
     const state = {isPack: false, title: title.addTitleCard, open: true}
     dispatch(setOpenCardPack({state}))
+  }
+
+  const learnHandler = () => {
+    dispatch(getCards({pageCount: cards.cardsTotalCount, cardsPack_id: param.cardsPack_id}))
+    navigate(`${PATH.LEARN}`)
   }
   useEffect(() => {
     dispatch(setCardsParam(stateParamsCard))
   }, [dispatch,stateParamsCard])
 
   useEffect(() => {
-    dispatch(getCards(stateParamsCard))
-  }, [dispatch, stateParamsCard])
+   if(JSON.stringify(stateParamsCard) === JSON.stringify(cardsParams)) dispatch(getCards(cardsParams))
+  }, [dispatch, cardsParams])
+
+  if (!isLogin) {
+    return <Navigate to="/login"/>
+  }
 
   return <Layout>
     <Layout.Content style={{margin: '90px 0 25px 0 '}}>
@@ -72,8 +85,7 @@ export const Cards = () => {
         (cards.cards.length !== 0 ?
             <>
               <div className={s.head}>
-                <PacksHead title={cards.packName} name="Learn to pack" callback={() => {
-                }} menu/>
+                <PacksHead title={cards.packName} name="Learn to pack" callback={learnHandler}/>
               </div>
               <div className={s.main}>
                 <div className={s.search}>
