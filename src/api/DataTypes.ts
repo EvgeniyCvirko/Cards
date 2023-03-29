@@ -53,6 +53,7 @@ export type UpdatePacksType = {
 
 export type CardPackType = {
   _id: string,
+  deckCover: string,
   user_id: string,
   user_name: string,
   name: string,
