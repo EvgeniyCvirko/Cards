@@ -8,23 +8,23 @@ type EditableSpanPropsType = {
   value: string;
   callback: (name: string) => void
 }
-export const EditableSpan = (props: EditableSpanPropsType) => {
+export const EditableSpan: React.FC<EditableSpanPropsType> =React.memo(({value,callback }) => {
   const [edit, setEdit] = useState<boolean>(false)
-  const [value, setValue] = useState<string>(props.value)
+  const [text, setText] = useState<string>(value)
 
   const clickHandler = () => {
     setEdit(true)
   }
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.currentTarget.value)
+    setText(event.currentTarget.value)
   }
 
   const offEditMode = () => {
-    if(value === ""){
-      setValue(props.value)
+    if(text === ""){
+      setText(text)
     }
     setEdit(false)
-    props.callback(value)
+    callback(text)
   }
   const onSaveHandler = () =>{
     offEditMode()
@@ -36,13 +36,13 @@ export const EditableSpan = (props: EditableSpanPropsType) => {
   return <div className={s.editableSpan}>
     {!edit ?
       <>
-        <span>{props.value}</span>
+        <span>{text}</span>
         <div className={s.editeButton} onClick={clickHandler}><EditOutlined/></div>
       </>
       :
       <>
         <Input autoFocus
-                value={value}
+                value={text}
                 onChange={onChangeHandler}
                 onBlur={offEditMode}
                 onKeyPress={onPressHandler}
@@ -53,4 +53,4 @@ export const EditableSpan = (props: EditableSpanPropsType) => {
     }
 
   </div>
-}
+})
