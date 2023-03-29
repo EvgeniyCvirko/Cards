@@ -16,20 +16,19 @@ export const Profile = () => {
   const logOutHandler = () => {
     dispatch(setLogout())
   }
-  const changeAvatarHandler = () => {
-    console.log('changeFoto')
+  const changeAvatarHandler = (newAvatar: string) => {
+    const data = {name, avatar: newAvatar}
+    dispatch(changeProfile({changeProfileData: data}))
   }
 
   const changeNameHandler = (name: string) => {
-    if (avatar) {
-      const data = {name, avatar}
-      dispatch(changeProfile({changeProfileData: data}))
-    }
+    const data = {name, avatar}
+    dispatch(changeProfile({changeProfileData: data}))
   }
   return (
     <div className={cs.block}>
       <div className={cs.title}>Personal Information</div>
-      <Avatars src={avatar} mode="profile" callback={changeAvatarHandler}/>
+      <Avatars src={avatar} isEdite={true} changeAvatar={changeAvatarHandler}/>
       <EditableSpan value={name} callback={changeNameHandler}/>
       <p className={s.email}>{email}</p>
       <div className={s.button}>

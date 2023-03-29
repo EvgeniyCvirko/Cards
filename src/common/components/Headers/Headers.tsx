@@ -47,10 +47,10 @@ export const Headers = () => {
           </div>
           {isLogin ?
             <div className={s.avatar} onClick={() => setOpen(!open)}>
-              <Popover content={content} trigger='click' open={open} onOpenChange={handleOpenChange}>
+              <Popover content={content} trigger="click" open={open} onOpenChange={handleOpenChange}>
                 <p>{name}</p>
               </Popover>
-              <Avatars src={avatar} width={36}/>
+              <Avatars isEdite={false} src={avatar} width={36}/>
             </div>
 
             :

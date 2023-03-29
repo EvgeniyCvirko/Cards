@@ -4,7 +4,7 @@ export type UserType = {
   _id: string;
   email: string;
   name: string;
-  avatar?: string;
+  avatar: string;
   publicCardPacksCount: number;
   created: string;
   updated: string;
