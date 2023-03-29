@@ -40,6 +40,7 @@ export const OwnSlider = () => {
       ...queryParams,
     })
   }
+  console.log('render')
   useEffect(() => {
     setValue([min, max])
   }, [min, max])
