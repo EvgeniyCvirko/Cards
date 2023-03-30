@@ -11,10 +11,12 @@
 }
 
 .title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
-    color: #000000;
 }
 
 
