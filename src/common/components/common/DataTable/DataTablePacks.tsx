@@ -49,8 +49,6 @@ export const DataTablePacks: React.FC<DataTableType> = ({data}) => {
             if (el.deckCover?.substring(0, 11) === 'data:image/') src = el.deckCover  
           }
         })
-        console.log(src);
-        
         return <div className='block'> 
           <div className='image'>
           {src && <img src={src} alt='image'/>}

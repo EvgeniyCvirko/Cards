@@ -42,6 +42,7 @@ export const Cards = () => {
     dispatch(setCardsParam(stateParamsCard))
   }, [dispatch, stateParamsCard])
 
+
   useEffect(() => {
     if (JSON.stringify(stateParamsCard) === JSON.stringify(cardsParams)) dispatch(getCards(cardsParams))
   }, [dispatch, cardsParams])

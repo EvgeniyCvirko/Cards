@@ -12,7 +12,7 @@ interface DataType {
   key: number;
   question: string;
   answer: string;
-  updated: string;
+  updated: JSX.Element;
 }
 
 type DataTableType = {
@@ -22,6 +22,7 @@ type DataTableType = {
 export const DataTableCards: React.FC<DataTableType> = ({data, ownPack}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   let up
+
   (searchParams.get('sortCards') && searchParams.get('sortCards') === sortPacks.ASC_UPDATE) ? up = true : up = false
   const changeSort = (isUp: boolean) => {
     const queryParam: { sortCards?: string } = {}
@@ -31,16 +32,52 @@ export const DataTableCards: React.FC<DataTableType> = ({data, ownPack}) => {
       ...queryParam
     })
   }
+
+const elementForColumn = (element: string) => {
+  let src 
+        data.forEach(el => {
+          if (el.question === element){
+            if (el.questionImg?.substring(0, 11) === 'data:image/') src = el.questionImg  
+          }
+        })
+  return <div className='block'> 
+  <div className='image'>
+  {src && <img src={src} alt='image'/>}
+  </div>
+  <div className='question'>{element}</div>
+  </div>
+}
+
   const columns: ColumnsType<DataType> = [
     {
       title: 'Question',
       dataIndex: 'question',
       className: 'Question',
-    },
+      render:(question) => {
+        return elementForColumn(question)
+      }
+      /* (question) => {
+        let src 
+        data.forEach(el => {
+          if (el.question === question){
+            if (el.questionImg?.substring(0, 11) === 'data:image/') src = el.questionImg  
+          }
+        })
+        return <div className='block'> 
+          <div className='image'>
+          {src && <img src={src} alt='image'/>}
+          </div>
+          <div className='question'>{question}</div>
+          </div>
+    } */
+  },
     {
       title: 'Answer',
       dataIndex: 'answer',
       className: 'Answer',
+      render:(question) => {
+        return elementForColumn(question)
+      }
     },
     {
       title: <SortComponent callback={changeSort} up={up}/>,
@@ -58,14 +95,14 @@ export const DataTableCards: React.FC<DataTableType> = ({data, ownPack}) => {
     let date = new Date(e.updated).toLocaleDateString('ru')
     return {
       key: i,
-      question: e.question,
+      question:e.question,
       answer: e.answer,
-      updated: date,
+      updated: <div className='update'>{date}</div>,
       action:
-        ownPack ? < >
+        ownPack ? <div className='action'>
             <Rate value={e.grade}/>
             < ActionsCards data={e}/>
-          </> :
+          </div> :
           <>
             <Rate value={e.grade}/>
           </>,
