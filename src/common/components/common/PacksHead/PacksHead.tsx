@@ -16,7 +16,7 @@ export const PacksHead: React.FC<PacksHeadPropsType> = React.memo(({name, title,
   }
   return <div className={s.head}>
     <div className={s.titleBlock}>
-      <div className={s.title}>{title}</div>
+      <h1 className={s.title}>{title}</h1>
       {menu && <MenuPacks/>}
     </div>
     <Button type="primary" onClick={buttonHandler} size="large">{name}</Button>

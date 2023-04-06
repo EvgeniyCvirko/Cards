@@ -42,6 +42,7 @@ export const Cards = () => {
     dispatch(setCardsParam(stateParamsCard))
   }, [dispatch, stateParamsCard])
 
+
   useEffect(() => {
     dispatch(getCards(stateParamsCard))
   }, [dispatch, stateParamsCard])

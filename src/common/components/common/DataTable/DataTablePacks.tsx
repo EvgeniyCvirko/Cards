@@ -49,7 +49,6 @@ export const DataTablePacks: React.FC<DataTableType> = ({data}) => {
             src.push(el.deckCover)
           }
         })
-        console.log(id)
         return <div>
           {src.length && <img src={src[0]} alt=""/>}
           <NavLink to={`${PATH.CARD}?cardsPack_id=${id}`}>{name}</NavLink>
