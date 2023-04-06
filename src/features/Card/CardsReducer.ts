@@ -82,10 +82,8 @@ export const slice = createSlice({
       return action.payload.cards
     });
     builder.addCase(changeGradeCard.fulfilled, (state, action) => {
-
       state.cards = state.cards.map(card =>
         card._id === action.payload.card_id ? {...card, grade: action.payload.grade} : card)
-
     });
   }
 })

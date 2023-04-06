@@ -42,18 +42,16 @@ export const DataTablePacks: React.FC<DataTableType> = ({data}) => {
       className: 'Name',
       render: (name) => {
         let id
-        let src:string[] = []
+        let src: string[] = []
         data.forEach(el => {
           if (el.name === name) {
             id = el._id
             src.push(el.deckCover)
-          } else {
-            id = null
           }
-
         })
+        console.log(id)
         return <div>
-          {src.length && <img src={src[0]} alt="cover"/>}
+          {src.length && <img src={src[0]} alt=""/>}
           <NavLink to={`${PATH.CARD}?cardsPack_id=${id}`}>{name}</NavLink>
         </div>
       }

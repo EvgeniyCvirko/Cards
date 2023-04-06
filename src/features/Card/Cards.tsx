@@ -43,8 +43,8 @@ export const Cards = () => {
   }, [dispatch, stateParamsCard])
 
   useEffect(() => {
-    if (JSON.stringify(stateParamsCard) === JSON.stringify(cardsParams)) dispatch(getCards(cardsParams))
-  }, [dispatch, cardsParams])
+    dispatch(getCards(stateParamsCard))
+  }, [dispatch, stateParamsCard])
 
   if (!isLogin) {
     return <Navigate to="/login"/>
