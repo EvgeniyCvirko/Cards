@@ -21,6 +21,7 @@ import {PATH} from '../../routing/Pages';
 export const Cards = () => {
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards)
+  const packs = useAppSelector(state => state.packs.cardPacks)
   const isLogin = useAppSelector(state => state.login.isLogin)
   const cardsParams = useAppSelector(state => state.cardsParam)
   const myId = useAppSelector(state => state.profile.user._id)
@@ -29,6 +30,9 @@ export const Cards = () => {
   const param = getActualUrlCardsParam(searchParams)
   const navigate = useNavigate()
   const stateParamsCard = useMemo(() => getActualUrlCardsParam(searchParams), [searchParams])
+  const index = packs.findIndex(el => el._id === stateParamsCard.cardsPack_id)
+  console.log(index)
+  const deckCover = useAppSelector(state => state.packs.cardPacks[index].deckCover)
   const addNewCard = () => {
     const state = {isPack: false, title: title.addTitleCard, open: true}
     dispatch(setOpenCardPack({state}))
@@ -61,6 +65,7 @@ export const Cards = () => {
                 <PacksHead title={cards.packName} name="Add new card" callback={addNewCard} menu/>
               </div>
               <BasicModal/>
+              {deckCover && <img src={deckCover} style={{maxWidth: '350px', maxHeight: '350px'}} alt=""/>}
               <div className={s.main}>
                 <div className={s.search}>
                   <SubTitle title="Search"/>
@@ -88,6 +93,7 @@ export const Cards = () => {
               <div className={s.head}>
                 <PacksHead title={cards.packName} name="Learn to pack" callback={learnHandler}/>
               </div>
+              {deckCover && <img src={deckCover} style={{maxWidth: '350px', maxHeight: '350px'}} alt=""/>}
               <div className={s.main}>
                 <div className={s.search}>
                   <SubTitle title="Search"/>

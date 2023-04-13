@@ -50,7 +50,7 @@ export const DataTablePacks: React.FC<DataTableType> = ({data}) => {
           }
         })
         return <div>
-          {src.length && <img src={src[0]} alt=""/>}
+          {src.length && <img src={src[0]} style={{maxWidth: '150px', maxHeight: '150px'}} alt="" />}
           <NavLink to={`${PATH.CARD}?cardsPack_id=${id}`}>{name}</NavLink>
         </div>
       }

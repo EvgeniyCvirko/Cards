@@ -34,16 +34,16 @@ export const DataTableCards: React.FC<DataTableType> = ({data, ownPack}) => {
   }
 
 const elementForColumn = (element: string) => {
-  let src 
+  let src
         data.forEach(el => {
           if (el.question === element){
             if (el.questionImg?.substring(0, 11) === 'data:image/') src = el.questionImg  
           }
         })
-  return <div className='block'> 
-  <div className='image'>
-  {src && <img src={src} alt='image'/>}
-  </div>
+  return <div className='block'>
+    {src && <div className="image">
+       <img src={src} alt='image'/>
+    </div>}
   <div className='question'>{element}</div>
   </div>
 }
@@ -56,20 +56,7 @@ const elementForColumn = (element: string) => {
       render:(question) => {
         return elementForColumn(question)
       }
-      /* (question) => {
-        let src 
-        data.forEach(el => {
-          if (el.question === question){
-            if (el.questionImg?.substring(0, 11) === 'data:image/') src = el.questionImg  
-          }
-        })
-        return <div className='block'> 
-          <div className='image'>
-          {src && <img src={src} alt='image'/>}
-          </div>
-          <div className='question'>{question}</div>
-          </div>
-    } */
+
   },
     {
       title: 'Answer',
